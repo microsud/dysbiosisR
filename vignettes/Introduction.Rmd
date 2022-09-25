@@ -1,0 +1,145 @@
+---
+title: "Introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In human microbiome research, there is interest in measuring “dysbiosis” which in 
+many cases relies on comparing a case group with a control (without known disease). 
+Several methods have been reported in literature and reviewed by Wei S et al., in their 
+2021 article [Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances](https://doi.org/10.1128/AEM.00395-21). It is important to note that the term 'dysbiosis' is a vaguely defined term in most instances and different methods are employed. We noticed a lack of tools for convenient and reproducible measurement of “dysbiosis” measures/scores/index. To address this gap we accumulated some commonly used approaches into a more standardized manner in an R package we call `dysbiosisR`.   
+We would also like to direct the readers and users to debates surrounding the concept of dysbiosis and suggest to interpret these measures by considering its pitfalls.    
+
+1. [Problems with the concept of gut microbiota dysbiosis](https://sfamjournals.onlinelibrary.wiley.com/doi/full/10.1111/1751-7915.13479)   
+
+2. [Dysbiosis and Its Discontents](https://doi.org/10.1128%2FmBio.01492-17)   
+
+3. [Dysbiosis is not an answer](https://doi.org/10.1038/nmicrobiol.2016.228)   
+
+
+```{r setup}
+library(dysbiosisR)
+library(ggplot2)
+data("WirbelJ_2018")
+```
+
+Here we use the test data from WirbelJ et al., (2018). The data consists of CRC and controls samples.  
+
+# Data   
+```{r}
+WirbelJ_2018
+```
+
+```{r}
+table(sample_data(WirbelJ_2018)$disease)
+```
+
+# Dysbiosis Measures  
+
+## Dysbiosis score based on median community level variation  
+Calculates median variation in a given sample compared to a reference 
+sample group. Here \code{dysbiosisMedianCLV} will calculate median 
+variation for a sample compared to a reference sample set. The user 
+can provide a custom distance matrix. If the user provides a Bray-Curtis 
+dissimilarity matrix, then the resulting score is comparable to the 'dysbiosis score'
+reported in [Lloyd-Price J, Arze C, Ananthakrishnan AN et al. (2019)](https://www.nature.com/articles/s41586-019-1237-9)
+
+```{r}
+dist.mat <- phyloseq::distance(WirbelJ_2018, "bray")
+ref.samples <- rownames(meta(subset_samples(WirbelJ_2018, disease == "healthy")))
+dysbiosis_1 <- dysbiosisMedianCLV(WirbelJ_2018,
+                                  dist_mat = dist.mat,
+                                  reference_samples = ref.samples)
+
+```
+
+
+```{r}
+dysbiosis_1 |> 
+  ggplot(aes(disease,score, color=disease)) +
+  geom_boxplot(width = 0.3, show.legend = FALSE)+
+  geom_jitter(width = 0.1, show.legend = FALSE) +
+  theme_bw()+
+  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+  labs(x="", y="Dysbiosis Score")
+```
+
+## Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test   
+Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test is a non-parametric
+test and returns a measure of dysbiosis. The function was adapted from
+the original article by [Montassier E et al. 2018](https://doi.org/10.1186/s40168-018-0514-4). 
+Here, a user defines a set of reference samples from which distance of every other sample is
+calculated. An important aspect to note in this function is that the method
+is slightly modified to accommodate equal number of samples in reference and test
+group. When calculating the \code{CLOUD} stats for reference samples the
+number of neighbors is defined as number of reference samples minus 1. For
+test samples, IF number of test samples matches number of samples in
+reference group, then number of neighbors is also defined as number of
+reference samples minus 1. This is done to avoid returning NAs in outputs
+while retaining maximum number of reference samples.
+
+```{r}
+
+cloud.results <- cloudStatistic(WirbelJ_2018,
+                                dist_mat = dist.mat,
+                                reference_samples = ref.samples,
+                                ndim=-1)
+cloud.results[1:3,1:5]
+```
+Here, the `log2Stats` can be used as a dysbiosis score.  
+
+```{r}
+cloud.results |> 
+  ggplot(aes(disease, log2Stats, color=disease)) +
+  geom_boxplot(width = 0.3, show.legend = FALSE)+
+  geom_jitter(width = 0.1, show.legend = FALSE) +
+  theme_bw()+
+  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+  labs(x="", y="Dysbiosis CLOUD Score")
+```
+
+
+## Dysbiosis score based on Euclidean distance to group centroids   
+
+Calculates difference in `euclidean distance (ED)` for a sample 
+to group centroids. For example, sample_1 to control centroid minus
+sample_1 to case centroid. The user can provide a custom distance matrix. 
+This approach was used in [AlShawaqfeh MK et al. (2017)](https://doi.org/10.1093/femsec/fix136).
+
+```{r}
+dysbiosis_2 <- euclideanDistCentroids(WirbelJ_2018,
+                                      dist_mat = dist.mat,
+                                      use_squared = TRUE,
+                                      group_col = "disease",
+                                      control_label = "healthy",
+                                      case_label = "CRC")
+dysbiosis_2[1:3,1:3]
+```
+
+Here, the `CentroidDist_score` can be used as a dysbiosis score.  
+```{r}
+dysbiosis_2 |> 
+  ggplot(aes(disease, CentroidDist_score, color=disease)) +
+  geom_boxplot(width = 0.3, show.legend = FALSE)+
+  geom_jitter(width = 0.1, show.legend = FALSE) +
+  theme_bw()+
+  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+  labs(x="", y="Dysbiosis CLOUD Score")
+```
+
+```{r}
+sessionInfo()
+```
+
+
+

@@ -1,0 +1,18 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+# Do not add maintenance material
+*~
+inst/extras/*.rds
+inst/extras/*.R
+data-raw/*.R
+data-raw/*.pdf
+data-raw/*.rds
+# Never put this in version control
+OAtoken
+*.rds
+inst/doc
+
+docs
+data-raw/tests/testthat.R
