@@ -1,5 +1,5 @@
 
-# dysbiosisR
+# dysbiosisR <img src="man/figures/logo.png" align="right" height="130" />
 
 <!-- badges: start -->
 <!-- badges: end -->

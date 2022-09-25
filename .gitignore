@@ -16,3 +16,4 @@ inst/doc
 
 #docs
 data-raw/tests/testthat.R
+*.pptx
