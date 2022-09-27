@@ -20,9 +20,12 @@ Imports:
     phyloseq,
     stats,
     usedist,
-    tidyr
-Suggests: 
+    tidyr,
+    randomForest,
+    pROC,
     ggplot2,
+    ggdist
+Suggests: 
     testthat (>= 3.0.0),
     knitr,
     rmarkdown

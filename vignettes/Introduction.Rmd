@@ -68,13 +68,13 @@ dysbiosis_1 <- dysbiosisMedianCLV(WirbelJ_2018,
 
 
 ```{r}
-dysbiosis_1 |> 
-  ggplot(aes(disease,score, color=disease)) +
-  geom_boxplot(width = 0.3, show.legend = FALSE)+
-  geom_jitter(width = 0.1, show.legend = FALSE) +
-  theme_bw()+
-  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+
+plotDysbiosis(df=dysbiosis_1,
+              xvar="disease",
+              yvar="score",
+              colors=c(CRC="brown3", healthy="steelblue")) +
   labs(x="", y="Dysbiosis Score")
+
 ```
 
 ## Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test   
@@ -102,12 +102,11 @@ cloud.results[1:3,1:5]
 Here, the `log2Stats` can be used as a dysbiosis score.  
 
 ```{r}
-cloud.results |> 
-  ggplot(aes(disease, log2Stats, color=disease)) +
-  geom_boxplot(width = 0.3, show.legend = FALSE)+
-  geom_jitter(width = 0.1, show.legend = FALSE) +
-  theme_bw()+
-  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+
+plotDysbiosis(df=cloud.results,
+              xvar="disease",
+              yvar="log2Stats",
+              colors=c(CRC="brown3", healthy="steelblue")) +
   labs(x="", y="Dysbiosis CLOUD Score")
 ```
 
@@ -131,18 +130,16 @@ dysbiosis_2[1:3,1:3]
 
 Here, the `CentroidDist_score` can be used as a dysbiosis score.  
 ```{r}
-dysbiosis_2 |> 
-  ggplot(aes(disease, CentroidDist_score, color=disease)) +
-  geom_boxplot(width = 0.3, show.legend = FALSE)+
-  geom_jitter(width = 0.1, show.legend = FALSE) +
-  theme_bw()+
-  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+plotDysbiosis(df=dysbiosis_2,
+              xvar="disease",
+              yvar="CentroidDist_score",
+              colors=c(CRC="brown3", healthy="steelblue")) +
   labs(x="", y="Dysbiosis CLOUD Score")
 ```
 
 ## Combined Alpha Beta Diveristy Based Score     
 
-The combined alpha-beta diversity approach was used by [Santiago M E et al. 2019](). This approach uses Shannon diversity as the alpha diversity measure and Jensen–Shannon divergence as the beta diversity measure. The score is mean difference of Shannon diversity between test sample and all references samples multiplied by the mean JSD of the test sample to all reference samples. When calculating this score for reference samples, the sample being used is excluded from calculating means for alpha and beta diversity.
+The combined alpha-beta diversity approach was used by [Santiago M E et al. 2019](http://www.aimspress.com/article/10.3934/microbiol.2019.1.1). This approach uses Shannon diversity as the alpha diversity measure and Jensen–Shannon divergence as the beta diversity measure. The score is mean difference of Shannon diversity between test sample and all references samples multiplied by the mean JSD of the test sample to all reference samples. When calculating this score for reference samples, the sample being used is excluded from calculating means for alpha and beta diversity.
 
 ```{r}
 dysbiosis_3 <- combinedShannonJSD(WirbelJ_2018,
@@ -151,14 +148,45 @@ dysbiosis_3[1:3,1:3]
 ```
 
 ```{r}
-dysbiosis_3 |> 
-  ggplot(aes(disease, ShannonJSDScore, color=disease)) +
-  geom_boxplot(width = 0.3, show.legend = FALSE)+
-  geom_jitter(width = 0.1, show.legend = FALSE) +
-  theme_bw()+
-  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+plotDysbiosis(df=dysbiosis_3,
+              xvar="disease",
+              yvar="ShannonJSDScore",
+              colors=c(CRC="brown3", healthy="steelblue"))+
   labs(x="", y="Shannon-JSD\nDysbiosis Score")
+
 ```
+
+## Random Forest Prediction Based Score  
+
+The original article [Saffouri GB, Shields-Cutler R et al. 2019](https://doi.org/10.1038/s41467-019-09964-7) reported a Symptom Index abbreviated as SI. In this approach the feature abundances are used for Random Forest classification and the resulting out of bag (OOB) predicted probability of being classified in disease group is considered as an SI or also dysbiosis index. The `dysbiosisOBB` function in this package allows for calculating this measure with some level of freedom of `tuneRF` and random forest parameters via the `randomForest` R package.
+```{r}
+# data are relative abundances summed to 100 or
+# near 100 val
+dysbiosis.oob <- dysbiosisOBB(WirbelJ_2018,
+                              group_col = "disease",
+                              control_label = "healthy",
+                              case_label = "CRC",
+                              seed_value = 1235,
+                              add_tuneRF_params = list(ntreeTry=100,
+                                                       stepFactor=1.5,
+                                                       improve=0.01,
+                                                       trace=TRUE,
+                                                       dobest=FALSE),
+                              ntree = 100,
+                              plot_roc = TRUE)
+```
+
+Visualize 
+```{r}
+
+plotDysbiosis(df=dysbiosis.oob,
+              xvar="disease",
+              yvar="oob.score",
+              colors=c(CRC="brown3", healthy="steelblue"))
+
+```
+
+
 
 ```{r}
 sessionInfo()
