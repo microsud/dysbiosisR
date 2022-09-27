@@ -119,7 +119,8 @@ for microbiome outliers.
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://dx.plos.org/10.1371/journal.pone.0061217" class="external-link">phyloseq</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ps</span> <span class="op">&lt;-</span> <span class="va">WirbelJ_2018</span></span></span>
 <span class="r-in"><span><span class="co"># Define controls as reference samples</span></span></span>
-<span class="r-in"><span><span class="va">ref.samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/microbiome/man/meta.html" class="external-link">meta</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">ps</span>, <span class="va">disease</span> <span class="op">==</span> <span class="st">"healthy"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ref.samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/sample_names-methods.html" class="external-link">sample_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span>,</span></span>
+<span class="r-in"><span>                                           <span class="va">disease</span> <span class="op">==</span> <span class="st">"healthy"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">dist.data</span> <span class="op">&lt;-</span> <span class="fu">phyloseq</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/distance.html" class="external-link">distance</a></span><span class="op">(</span><span class="va">ps</span>, <span class="st">"bray"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">cloud.results</span> <span class="op">&lt;-</span> <span class="fu">cloudStatistic</span><span class="op">(</span><span class="va">ps</span>,</span></span>
 <span class="r-in"><span>                                dist_mat <span class="op">=</span> <span class="va">dist.data</span>,</span></span>
@@ -133,27 +134,20 @@ for microbiome outliers.
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      0.8871533 0.953125      MMPU84450604ST -0.17274466</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      0.9231189 0.765625      MMPU99077057ST -0.11541155</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 0.9584053 0.625000 CCMD10032470ST-11-0 -0.06129217</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       study_name          subject_id body_site</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      WirbelJ_2018 CCMD11006829ST-21-0     stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      WirbelJ_2018 CCMD12232071ST-21-0     stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST      WirbelJ_2018 CCMD13071240ST-21-0     stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      WirbelJ_2018 CCMD13934959ST-21-0     stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      WirbelJ_2018 CCMD14479708ST-21-0     stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 WirbelJ_2018 CCMD18872694ST-21-0     stool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     antibiotics_current_use study_condition disease age</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                         &lt;NA&gt;             CRC     CRC  42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                         &lt;NA&gt;             CRC     CRC  75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                         &lt;NA&gt;             CRC     CRC  66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                         &lt;NA&gt;             CRC     CRC  56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                         &lt;NA&gt;             CRC     CRC  74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                    &lt;NA&gt;             CRC     CRC  63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     infant_age age_category gender country non_westernized</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST              NA        adult female     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST              NA       senior   male     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST              NA       senior female     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST              NA        adult   male     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST              NA       senior   male     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0         NA        adult   male     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       study_name          subject_id body_site study_condition</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      WirbelJ_2018 CCMD11006829ST-21-0     stool             CRC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      WirbelJ_2018 CCMD12232071ST-21-0     stool             CRC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST      WirbelJ_2018 CCMD13071240ST-21-0     stool             CRC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      WirbelJ_2018 CCMD13934959ST-21-0     stool             CRC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      WirbelJ_2018 CCMD14479708ST-21-0     stool             CRC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 WirbelJ_2018 CCMD18872694ST-21-0     stool             CRC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     disease age age_category gender country non_westernized</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST          CRC  42        adult female     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST          CRC  75       senior   male     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST          CRC  66       senior female     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST          CRC  56        adult   male     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST          CRC  74       senior   male     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0     CRC  63        adult   male     DEU              no</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     sequencing_platform DNA_extraction_kit     PMID</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST            IlluminaHiSeq              Gnome 30936547</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST            IlluminaHiSeq              Gnome 30936547</span>
@@ -168,195 +162,20 @@ for microbiome outliers.
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST          36979669   3186342244                  45</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST          65475493   5637718108                  45</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0     55300211   4780095276                  45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     median_read_length NCBI_accession pregnant lactating</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                      94           &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                      88           &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                      93           &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                      93           &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                      92           &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                 93           &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          curator BMI family days_from_first_collection</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      Paolo_Manghi  35   &lt;NA&gt;                         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      Paolo_Manghi  28   &lt;NA&gt;                         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST      Paolo_Manghi  23   &lt;NA&gt;                         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      Paolo_Manghi  27   &lt;NA&gt;                         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      Paolo_Manghi  26   &lt;NA&gt;                         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 Paolo_Manghi  25   &lt;NA&gt;                         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     family_role born_method feeding_practice travel_destination</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST             &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;               &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST             &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;               &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST             &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;               &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST             &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;               &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST             &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;               &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0        &lt;NA&gt;        &lt;NA&gt;             &lt;NA&gt;               &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     location visit_number premature birth_weight</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST          &lt;NA&gt;           NA      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST          &lt;NA&gt;           NA      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST          &lt;NA&gt;           NA      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST          &lt;NA&gt;           NA      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST          &lt;NA&gt;           NA      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0     &lt;NA&gt;           NA      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     gestational_age antibiotics_family disease_subtype</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                   NA               &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                   NA               &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                   NA               &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                   NA               &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                   NA               &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0              NA               &lt;NA&gt;            &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     days_after_onset creatine albumine hscrp ESR treatment ast</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                    NA       NA       NA    NA  NA      &lt;NA&gt;  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                    NA       NA       NA    NA  NA      &lt;NA&gt;  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                    NA       NA       NA    NA  NA      &lt;NA&gt;  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                    NA       NA       NA    NA  NA      &lt;NA&gt;  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                    NA       NA       NA    NA  NA      &lt;NA&gt;  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0               NA       NA       NA    NA  NA      &lt;NA&gt;  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     alt globulin urea_nitrogen BASDAI BASFI alcohol</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST       NA       NA            NA     NA    NA    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST       NA       NA            NA     NA    NA    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST       NA       NA            NA     NA    NA    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST       NA       NA            NA     NA    NA    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST       NA       NA            NA     NA    NA    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0  NA       NA            NA     NA    NA    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     flg_genotype population menopausal_status lifestyle</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST              &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST              &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST              &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST              &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST              &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0         &lt;NA&gt;       &lt;NA&gt;              &lt;NA&gt;      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     body_subsite diet    tnm triglycerides hdl ldl hba1c</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST              &lt;NA&gt; &lt;NA&gt; t3n0m0            NA  NA  NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST              &lt;NA&gt; &lt;NA&gt; t3n2m0            NA  NA  NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST              &lt;NA&gt; &lt;NA&gt; t3n0m0            NA  NA  NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST              &lt;NA&gt; &lt;NA&gt; t3n0m0            NA  NA  NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST              &lt;NA&gt; &lt;NA&gt; t3n0m1            NA  NA  NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0         &lt;NA&gt; &lt;NA&gt; t3n1m0            NA  NA  NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     change_in_tumor_size RECIST  ORR smoker ever_smoker</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                      &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                      &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                      &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                      &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                      &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                 &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;   &lt;NA&gt;        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     dental_sample_type history_of_periodontitis PPD_M PPD_B</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                    &lt;NA&gt;                     &lt;NA&gt;    NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                    &lt;NA&gt;                     &lt;NA&gt;    NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                    &lt;NA&gt;                     &lt;NA&gt;    NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                    &lt;NA&gt;                     &lt;NA&gt;    NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                    &lt;NA&gt;                     &lt;NA&gt;    NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0               &lt;NA&gt;                     &lt;NA&gt;    NA    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     PPD_D PPD_L fobt disease_stage disease_location</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST         NA    NA &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST         NA    NA &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST         NA    NA &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST         NA    NA &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST         NA    NA &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0    NA    NA &lt;NA&gt;          &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     calprotectin HBI SCCAI uncurated_metadata mumps cholesterol</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                NA  NA    NA               &lt;NA&gt;  &lt;NA&gt;          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                NA  NA    NA               &lt;NA&gt;  &lt;NA&gt;          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                NA  NA    NA               &lt;NA&gt;  &lt;NA&gt;          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                NA  NA    NA               &lt;NA&gt;  &lt;NA&gt;          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                NA  NA    NA               &lt;NA&gt;  &lt;NA&gt;          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0           NA  NA    NA               &lt;NA&gt;  &lt;NA&gt;          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     c_peptide glucose creatinine bilubirin prothrombin_time wbc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST             NA      NA         NA        NA               NA  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST             NA      NA         NA        NA               NA  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST             NA      NA         NA        NA               NA  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST             NA      NA         NA        NA               NA  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST             NA      NA         NA        NA               NA  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0        NA      NA         NA        NA               NA  NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     rbc hemoglobinometry remission dyastolic_p systolic_p</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST       NA               NA      &lt;NA&gt;          NA         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST       NA               NA      &lt;NA&gt;          NA         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST       NA               NA      &lt;NA&gt;          NA         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST       NA               NA      &lt;NA&gt;          NA         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST       NA               NA      &lt;NA&gt;          NA         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0  NA               NA      &lt;NA&gt;          NA         NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     insulin_cat adiponectin glp_1 cd163 il_1 leptin fgf_19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST             &lt;NA&gt;          NA    NA    NA   NA     NA     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST             &lt;NA&gt;          NA    NA    NA   NA     NA     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST             &lt;NA&gt;          NA    NA    NA   NA     NA     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST             &lt;NA&gt;          NA    NA    NA   NA     NA     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST             &lt;NA&gt;          NA    NA    NA   NA     NA     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0        &lt;NA&gt;          NA    NA    NA   NA     NA     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     glutamate_decarboxylase_2_antibody  HLA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                                      NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                                      NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                                      NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                                      NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                                      NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                                 NA &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     autoantibody_positive age_seroconversion age_T1D_diagnosis</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                       &lt;NA&gt;                 NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                       &lt;NA&gt;                 NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                       &lt;NA&gt;                 NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                       &lt;NA&gt;                 NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                       &lt;NA&gt;                 NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                  &lt;NA&gt;                 NA                NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     hitchip_probe_class subcohort previous_therapy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                     &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                     &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                     &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                     &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                     &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                &lt;NA&gt;      &lt;NA&gt;             &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     performance_status toxicity_above_zero PFS12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                      NA                &lt;NA&gt;  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                      NA                &lt;NA&gt;  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                      NA                &lt;NA&gt;  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                      NA                &lt;NA&gt;  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                      NA                &lt;NA&gt;  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                 NA                &lt;NA&gt;  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     fasting_insulin fasting_glucose protein_intake stec_count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                   NA              NA             NA       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                   NA              NA             NA       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                   NA              NA             NA       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                   NA              NA             NA       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                   NA              NA             NA       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0              NA              NA             NA       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     shigatoxin_2_elisa stool_texture anti_PD_1 mgs_richness</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                    &lt;NA&gt;          &lt;NA&gt;      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                    &lt;NA&gt;          &lt;NA&gt;      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                    &lt;NA&gt;          &lt;NA&gt;      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                    &lt;NA&gt;          &lt;NA&gt;      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                    &lt;NA&gt;          &lt;NA&gt;      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0               &lt;NA&gt;          &lt;NA&gt;      &lt;NA&gt;           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     ferm_milk_prod_consumer inr ctp birth_control_pil</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                         &lt;NA&gt;  NA  NA              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                         &lt;NA&gt;  NA  NA              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                         &lt;NA&gt;  NA  NA              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                         &lt;NA&gt;  NA  NA              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                         &lt;NA&gt;  NA  NA              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                    &lt;NA&gt;  NA  NA              &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     c_section_type ajcc hla_drb12 hla_dqa12 hla_dqa11 hla_drb11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                &lt;NA&gt;   ii        NA        NA        NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                &lt;NA&gt;  iii        NA        NA        NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                &lt;NA&gt;   ii        NA        NA        NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                &lt;NA&gt;   ii        NA        NA        NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                &lt;NA&gt;   iv        NA        NA        NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0           &lt;NA&gt;  iii        NA        NA        NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     zigosity brinkman_index alcohol_numeric</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST          &lt;NA&gt;             NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST          &lt;NA&gt;             NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST          &lt;NA&gt;             NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST          &lt;NA&gt;             NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST          &lt;NA&gt;             NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0     &lt;NA&gt;             NA              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     breastfeeding_duration formula_first_day ALT eGFR nspecies</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                          NA                NA  NA   NA      144</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                          NA                NA  NA   NA      110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                          NA                NA  NA   NA      126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                          NA                NA  NA   NA      100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                          NA                NA  NA   NA      110</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                     NA                NA  NA   NA      145</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST       case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST       case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST       case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST       case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST       case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0  case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     median_read_length NCBI_accession      curator BMI    tnm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                      94           &lt;NA&gt; Paolo_Manghi  35 t3n0m0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                      88           &lt;NA&gt; Paolo_Manghi  28 t3n2m0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                      93           &lt;NA&gt; Paolo_Manghi  23 t3n0m0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                      93           &lt;NA&gt; Paolo_Manghi  27 t3n0m0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                      92           &lt;NA&gt; Paolo_Manghi  26 t3n0m1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                 93           &lt;NA&gt; Paolo_Manghi  25 t3n1m0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     ajcc nspecies group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST        ii      144  case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST       iii      110  case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST        ii      126  case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST        ii      100  case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST        iv      110  case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0  iii      145  case</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

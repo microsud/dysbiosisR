@@ -33,7 +33,7 @@ library(ggplot2)
 data("WirbelJ_2018")
 ```
 
-Here we use the test data from WirbelJ et al., (2018). The data consists of CRC and controls samples.  
+Here we use the test data from Wirbel J et al., (2018). The data consists of CRC and controls samples.  
 
 # Data   
 ```{r}
@@ -56,7 +56,10 @@ reported in [Lloyd-Price J, Arze C, Ananthakrishnan AN et al. (2019)](https://ww
 
 ```{r}
 dist.mat <- phyloseq::distance(WirbelJ_2018, "bray")
-ref.samples <- rownames(meta(subset_samples(WirbelJ_2018, disease == "healthy")))
+# get reference samples
+ref.samples <- sample_names(subset_samples(WirbelJ_2018, 
+                                           disease == "healthy"))
+
 dysbiosis_1 <- dysbiosisMedianCLV(WirbelJ_2018,
                                   dist_mat = dist.mat,
                                   reference_samples = ref.samples)
@@ -135,6 +138,26 @@ dysbiosis_2 |>
   theme_bw()+
   scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
   labs(x="", y="Dysbiosis CLOUD Score")
+```
+
+## Combined Alpha Beta Diveristy Based Score     
+
+The combined alpha-beta diversity approach was used by [Santiago M E et al. 2019](). This approach uses Shannon diversity as the alpha diversity measure and Jensen–Shannon divergence as the beta diversity measure. The score is mean difference of Shannon diversity between test sample and all references samples multiplied by the mean JSD of the test sample to all reference samples. When calculating this score for reference samples, the sample being used is excluded from calculating means for alpha and beta diversity.
+
+```{r}
+dysbiosis_3 <- combinedShannonJSD(WirbelJ_2018,
+                                  reference_samples = ref.samples)
+dysbiosis_3[1:3,1:3]
+```
+
+```{r}
+dysbiosis_3 |> 
+  ggplot(aes(disease, ShannonJSDScore, color=disease)) +
+  geom_boxplot(width = 0.3, show.legend = FALSE)+
+  geom_jitter(width = 0.1, show.legend = FALSE) +
+  theme_bw()+
+  scale_color_manual(values = c(CRC="brown3", healthy ="steelblue")) +
+  labs(x="", y="Shannon-JSD\nDysbiosis Score")
 ```
 
 ```{r}

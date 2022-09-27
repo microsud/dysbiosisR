@@ -25,7 +25,13 @@
     <loc>/reference/cloudStatistic.html</loc>
   </url>
   <url>
+    <loc>/reference/combinedShannonJSD.html</loc>
+  </url>
+  <url>
     <loc>/reference/dysbiosisMedianCLV.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dysbiosisOverview.html</loc>
   </url>
   <url>
     <loc>/reference/euclideanDistCentroids.html</loc>

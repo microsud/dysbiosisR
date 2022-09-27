@@ -17,13 +17,13 @@ Depends:
     microbiome
 Imports: 
     dplyr,
+    phyloseq,
     stats,
     usedist,
     tidyr
 Suggests: 
     ggplot2,
     testthat (>= 3.0.0),
-    phyloseq,
     knitr,
     rmarkdown
 Config/testthat/edition: 3

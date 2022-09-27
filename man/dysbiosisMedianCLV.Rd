@@ -30,7 +30,8 @@ Calculates median variation in a given sample compared to a reference
 library(dysbiosisR)
 # We use WirbelJ_2018 as test data
 dist.mat <- phyloseq::distance(WirbelJ_2018, "bray")
-ref.samples <- rownames(meta(subset_samples(WirbelJ_2018, disease == "healthy")))
+ref.samples <- sample_names(subset_samples(WirbelJ_2018,
+                                           disease == "healthy"))
 db.1 <- dysbiosisMedianCLV(WirbelJ_2018,
                            dist_mat = dist.mat,
                            reference_samples = ref.samples)

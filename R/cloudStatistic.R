@@ -34,7 +34,8 @@
 #' library(phyloseq)
 #' ps <- WirbelJ_2018
 #' # Define controls as reference samples
-#' ref.samples <- rownames(meta(subset_samples(ps, disease == "healthy")))
+#' ref.samples <- sample_names(subset_samples(WirbelJ_2018,
+#'                                            disease == "healthy"))
 #' dist.data <- phyloseq::distance(ps, "bray")
 #' cloud.results <- cloudStatistic(ps,
 #'                                 dist_mat = dist.data,
