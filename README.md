@@ -30,7 +30,7 @@ Contributions and feedback are very welcome:
   * [Star us on the Github page](https://github.com/microsud/dysbiosisR)
 
 ### Cite   
-Shetty SA., 2022. _dysbiosisR_: An R package to calculate common dysbiosis measures. 
+Shetty SA, et al., 2022. _dysbiosisR_: An R package to calculate common dysbiosis measures. 
 
 ### References  
 1. Santiago M, et al., 2019. Microbiome predictors of dysbiosis and VRE decolonization in patients with recurrent C. difficile infections in a multi-center retrospective study. AIMS Microbiol 5:1–18. 10.3934/microbiol.2019.1.1.  
@@ -43,5 +43,10 @@ Shetty SA., 2022. _dysbiosisR_: An R package to calculate common dysbiosis measu
 
 5. Saffouri GB, Shields-Cutler RR, Chen J, Yang Y, Lekatz HR, Hale VL, Cho JM, Battaglioli EJ, Bhattarai Y, Thompson KJ, Kalari KK, Behera G, Berry JC, Peters SA, Patel R, Schuetz AN, Faith JJ, Camilleri M, Sonnenburg JL, Farrugia G, Swann JR, Grover M, Knights D, Kashyap PC. 2019. Small intestinal microbial dysbiosis underlies symptoms associated with functional gastrointestinal disorders. Nat Commun 10:2012. 10.1038/s41467-019-09964-7.  
 
+### Acknowledgement    
+This work was done within the Microbiome Group at the RIVM and Medical Microbiology and Infection Prevention at UMC Groningen.  
 
+### Contact    
+Sudarshan A. Shetty (sudarshanshetty9[@]gmail[dot]com)    
+Susana Fuentes (susana[dot]fuentes[@]rivm[dot]nl)    
 
