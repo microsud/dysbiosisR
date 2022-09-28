@@ -11,6 +11,10 @@
 \item{dist_mat}{A distance matrix. Can be output of \code{phyloseq::distance}
 or \code{vegan::vegdist}.}
 
+\item{k_num}{Neighbors to use. Default is 80 percent. User can
+define percent of samples. See \code{Montassier E et al. 2018}
+for more details.}
+
 \item{ndim}{Dimension of the space in which the data are to be represented.
 Default is -1. See \code{Montassier E et al. 2018}}
 }
@@ -27,14 +31,9 @@ Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test is a non-parametric
 test and returns a measure of dysbiosis. The function was adapted from
 the original article by \code{Montassier E et al. 2018}. Here, a user defines
 a set of reference samples from which distance of every other sample is
-calculated. An important aspect to note in this function is that the method
-is slightly modified to accommodate equal number of samples in reference and test
-group. When calculating the \code{CLOUD} stats for reference samples the
-number of neighbors is defined as number of reference samples minus 1. For
-test samples, IF number of test samples matches number of samples in
-reference group, then number of neighbors is also defined as number of
-reference samples minus 1. This is done to avoid returning NAs in outputs
-while retaining maximum number of reference samples.
+calculated. When calculating the \code{CLOUD} stats the \emph{k} is an
+important parameter specified by argument \code{k_num}. By default we use a
+conservative 80 percent of the samples in each group.
 }
 \examples{
 data("WirbelJ_2018")
@@ -44,7 +43,7 @@ ps <- WirbelJ_2018
 ref.samples <- sample_names(subset_samples(WirbelJ_2018,
                                            disease == "healthy"))
 dist.data <- phyloseq::distance(ps, "bray")
-cloud.results <- cloudStatistic(ps,
+cloud.results <- cloudStatistic(x= ps,
                                 dist_mat = dist.data,
                                 reference_samples = ref.samples,
                                 ndim=-1)

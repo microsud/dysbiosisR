@@ -10,14 +10,20 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  out.width = "100%",
+  dpi = 300,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
 )
 ```
 
 In human microbiome research, there is interest in measuring “dysbiosis” which in 
 many cases relies on comparing a case group with a control (without known disease). 
 Several methods have been reported in literature and reviewed by Wei S et al., in their 
-2021 article [Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances](https://doi.org/10.1128/AEM.00395-21). It is important to note that the term 'dysbiosis' is a vaguely defined term in most instances and different methods are employed. We noticed a lack of tools for convenient and reproducible measurement of “dysbiosis” measures/scores/index. To address this gap we accumulated some commonly used approaches into a more standardized manner in an R package we call `dysbiosisR`.   
+2021 article [Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances](https://doi.org/10.1128/AEM.00395-21). The `dysbiosisR` provides tools for five approaches covering three different methods: Neighborhood classification, Random forest prediction and Combined alpha-beta diversity.   
+
+It is important to note that the term 'dysbiosis' is a vaguely defined term in most instances and different methods are employed. We noticed a lack of tools for convenient and reproducible measurement of “dysbiosis” measures/scores/index. To address this gap we accumulated some commonly used approaches into a more standardized manner in an R package we call `dysbiosisR`.   
 We would also like to direct the readers and users to debates surrounding the concept of dysbiosis and suggest to interpret these measures by considering its pitfalls.    
 
 1. [Problems with the concept of gut microbiota dysbiosis](https://sfamjournals.onlinelibrary.wiley.com/doi/full/10.1111/1751-7915.13479)   
@@ -30,6 +36,7 @@ We would also like to direct the readers and users to debates surrounding the co
 ```{r setup}
 library(dysbiosisR)
 library(ggplot2)
+library(microbiome)
 data("WirbelJ_2018")
 ```
 
@@ -41,8 +48,17 @@ WirbelJ_2018
 ```
 
 ```{r}
+# check first five sample sums
+sample_sums(WirbelJ_2018)[1:5]
+```
+
+These are relative abundance data.  
+
+```{r}
 table(sample_data(WirbelJ_2018)$disease)
 ```
+
+There are 60 CRC samples and 65 control/healthy samples.  
 
 # Dysbiosis Measures  
 
@@ -66,15 +82,16 @@ dysbiosis_1 <- dysbiosisMedianCLV(WirbelJ_2018,
 
 ```
 
-
-```{r}
-
-plotDysbiosis(df=dysbiosis_1,
+Visualize Dysbiosis Score between CRC and healthy group.  
+```{r fig.width=5, fig.height=3, fig.align='center'}
+p1 <- plotDysbiosis(df=dysbiosis_1,
               xvar="disease",
               yvar="score",
-              colors=c(CRC="brown3", healthy="steelblue")) +
-  labs(x="", y="Dysbiosis Score")
-
+              colors=c(CRC="brown3", healthy="steelblue"),
+              show_points = FALSE) +
+  labs(x="", y="Dysbiosis Score") +
+  theme_bw(base_size = 14)
+p1
 ```
 
 ## Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test   
@@ -96,18 +113,20 @@ while retaining maximum number of reference samples.
 cloud.results <- cloudStatistic(WirbelJ_2018,
                                 dist_mat = dist.mat,
                                 reference_samples = ref.samples,
-                                ndim=-1)
+                                ndim=-1,
+                                k_num=80)
 cloud.results[1:3,1:5]
+
 ```
 Here, the `log2Stats` can be used as a dysbiosis score.  
 
-```{r}
-
-plotDysbiosis(df=cloud.results,
+```{r fig.width=5, fig.height=3, fig.align='center'}
+p2 <- plotDysbiosis(df=cloud.results,
               xvar="disease",
               yvar="log2Stats",
               colors=c(CRC="brown3", healthy="steelblue")) +
   labs(x="", y="Dysbiosis CLOUD Score")
+p2
 ```
 
 
@@ -129,12 +148,13 @@ dysbiosis_2[1:3,1:3]
 ```
 
 Here, the `CentroidDist_score` can be used as a dysbiosis score.  
-```{r}
-plotDysbiosis(df=dysbiosis_2,
+```{r fig.width=5, fig.height=3, fig.align='center'}
+p3 <- plotDysbiosis(df=dysbiosis_2,
               xvar="disease",
               yvar="CentroidDist_score",
               colors=c(CRC="brown3", healthy="steelblue")) +
   labs(x="", y="Dysbiosis CLOUD Score")
+p3
 ```
 
 ## Combined Alpha Beta Diveristy Based Score     
@@ -147,19 +167,19 @@ dysbiosis_3 <- combinedShannonJSD(WirbelJ_2018,
 dysbiosis_3[1:3,1:3]
 ```
 
-```{r}
-plotDysbiosis(df=dysbiosis_3,
+```{r fig.width=5, fig.height=3, fig.align='center'}
+p4 <- plotDysbiosis(df=dysbiosis_3,
               xvar="disease",
               yvar="ShannonJSDScore",
               colors=c(CRC="brown3", healthy="steelblue"))+
   labs(x="", y="Shannon-JSD\nDysbiosis Score")
-
+p4
 ```
 
 ## Random Forest Prediction Based Score  
 
 The original article [Saffouri GB, Shields-Cutler R et al. 2019](https://doi.org/10.1038/s41467-019-09964-7) reported a Symptom Index abbreviated as SI. In this approach the feature abundances are used for Random Forest classification and the resulting out of bag (OOB) predicted probability of being classified in disease group is considered as an SI or also dysbiosis index. The `dysbiosisOBB` function in this package allows for calculating this measure with some level of freedom of `tuneRF` and random forest parameters via the `randomForest` R package.
-```{r}
+```{r fig.width=5, fig.height=3, fig.align='center'}
 # data are relative abundances summed to 100 or
 # near 100 val
 dysbiosis.oob <- dysbiosisOBB(WirbelJ_2018,
@@ -177,15 +197,25 @@ dysbiosis.oob <- dysbiosisOBB(WirbelJ_2018,
 ```
 
 Visualize 
-```{r}
-
-plotDysbiosis(df=dysbiosis.oob,
+```{r fig.width=5, fig.height=3, fig.align='center'}
+p5 <- plotDysbiosis(df=dysbiosis.oob,
               xvar="disease",
               yvar="oob.score",
-              colors=c(CRC="brown3", healthy="steelblue"))
-
+              colors=c(CRC="brown3", healthy="steelblue"))+
+  labs(x="", y="OOB Dysbiosis Score")
+p5
 ```
 
+Compare all five dysbiosis scores  
+```{r}
+
+all.dysbiosis <- data.frame(cbind(dysbiosis_1["score"], 
+                                  dysbiosis_2["CentroidDist_score"], 
+                                  dysbiosis_3["ShannonJSDScore"], 
+                                  dysbiosis.oob["oob.score"], 
+                                  cloud.results["log2Stats"]))
+head(all.dysbiosis)
+```
 
 
 ```{r}

@@ -13,6 +13,8 @@
 #'
 #' @param colors colors to use for plotting. Default is NULL.
 #'
+#' @param show_points Logical TRUE or FALSE.
+#'
 #' @return A ggplot2 object
 #'
 #' @examples
@@ -42,7 +44,8 @@ NULL
 plotDysbiosis <- function(df=NULL,
                           xvar=NULL,
                           yvar=NULL,
-                          colors=NULL){
+                          colors=NULL,
+                          show_points= TRUE){
 
 
   if(!xvar %in% colnames(df)){
@@ -56,9 +59,23 @@ plotDysbiosis <- function(df=NULL,
   if(is.null(colors)){
     pgrp <- df |>
       ggplot2::ggplot(ggplot2::aes_string(x=xvar, y=yvar, group=xvar)) +
-      ggdist::stat_halfeye(color = "black", size=0.1)+
-      ggplot2::theme(legend.position = "none") +
+      ggplot2::geom_boxplot(width = 0.1,
+                            alpha = 0.1,
+                            outlier.shape = NA) +
+      ggdist::stat_halfeye(color = "black",
+                           size=1,
+                           adjust = 0.5,
+                           justification = -0.1)
+    if(show_points){
+      pgrp <- pgrp + ggplot2::geom_jitter(shape = 21,
+                                          size = 2,
+                                          alpha = 0.6,
+                                          width = 0.05)
+    }
+
+    pgrp <- pgrp + ggplot2::theme(legend.position = "none") +
       ggplot2::theme(axis.title.x = ggplot2::element_blank())
+
 
   } else {
     pgrp <- df |>
@@ -66,7 +83,21 @@ plotDysbiosis <- function(df=NULL,
                                           y=yvar,
                                           fill = xvar,
                                           group=xvar)) +
-      ggdist::stat_halfeye(color = "black", size=0.1) +
+      ggplot2::geom_boxplot(width = 0.1,
+                            alpha = 0.1,
+                            outlier.shape = NA) +
+      ggdist::stat_halfeye(color = "black",
+                           size=1,
+                           adjust = 0.5,
+                           justification = -0.1)
+
+    if(show_points){
+      pgrp <- pgrp + ggplot2::geom_jitter(shape = 21,
+                                          size = 2,
+                                          alpha = 0.6,
+                                          width = 0.05)
+    }
+    pgrp <- pgrp +
       ggplot2::scale_color_manual(xvar,values = colors) +
       ggplot2::scale_fill_manual(xvar, values = colors) +
       ggplot2::theme_bw() +

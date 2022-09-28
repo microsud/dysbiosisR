@@ -12,6 +12,8 @@ by dysbiosisR package.}
 \item{yvar}{Variable to plot on y-axis.}
 
 \item{colors}{colors to use for plotting. Default is NULL.}
+
+\item{show_points}{Logical TRUE or FALSE.}
 }
 \value{
 A ggplot2 object

@@ -71,6 +71,12 @@
 or <code><a href="https://rdrr.io/pkg/vegan/man/vegdist.html" class="external-link">vegan::vegdist</a></code>.</p></dd>
 
 
+<dt>k_num</dt>
+<dd><p>Neighbors to use. Default is 80 percent. User can
+define percent of samples. See <code>Montassier E et al. 2018</code>
+for more details.</p></dd>
+
+
 <dt>ndim</dt>
 <dd><p>Dimension of the space in which the data are to be represented.
 Default is -1. See <code>Montassier E et al. 2018</code></p></dd>
@@ -89,14 +95,9 @@ Default is -1. See <code>Montassier E et al. 2018</code></p></dd>
 test and returns a measure of dysbiosis. The function was adapted from
 the original article by <code>Montassier E et al. 2018</code>. Here, a user defines
 a set of reference samples from which distance of every other sample is
-calculated. An important aspect to note in this function is that the method
-is slightly modified to accommodate equal number of samples in reference and test
-group. When calculating the <code>CLOUD</code> stats for reference samples the
-number of neighbors is defined as number of reference samples minus 1. For
-test samples, IF number of test samples matches number of samples in
-reference group, then number of neighbors is also defined as number of
-reference samples minus 1. This is done to avoid returning NAs in outputs
-while retaining maximum number of reference samples.</p>
+calculated. When calculating the <code>CLOUD</code> stats the <em>k</em> is an
+important parameter specified by argument <code>k_num</code>. By default we use a
+conservative 80 percent of the samples in each group.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -122,18 +123,18 @@ for microbiome outliers.
 <span class="r-in"><span><span class="va">ref.samples</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/sample_names-methods.html" class="external-link">sample_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/subset_samples-methods.html" class="external-link">subset_samples</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span>,</span></span>
 <span class="r-in"><span>                                           <span class="va">disease</span> <span class="op">==</span> <span class="st">"healthy"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">dist.data</span> <span class="op">&lt;-</span> <span class="fu">phyloseq</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/distance.html" class="external-link">distance</a></span><span class="op">(</span><span class="va">ps</span>, <span class="st">"bray"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">cloud.results</span> <span class="op">&lt;-</span> <span class="fu">cloudStatistic</span><span class="op">(</span><span class="va">ps</span>,</span></span>
+<span class="r-in"><span><span class="va">cloud.results</span> <span class="op">&lt;-</span> <span class="fu">cloudStatistic</span><span class="op">(</span>x<span class="op">=</span> <span class="va">ps</span>,</span></span>
 <span class="r-in"><span>                                dist_mat <span class="op">=</span> <span class="va">dist.data</span>,</span></span>
 <span class="r-in"><span>                                reference_samples <span class="op">=</span> <span class="va">ref.samples</span>,</span></span>
 <span class="r-in"><span>                                ndim<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cloud.results</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         stats    pvals                 ids   log2Stats</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      1.0186169 0.343750      MMPU29365221ST  0.02661160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      0.9591212 0.625000      MMPU68403337ST -0.06021501</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST      0.9914070 0.484375      MMPU72854103ST -0.01245058</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      0.8871533 0.953125      MMPU84450604ST -0.17274466</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      0.9231189 0.765625      MMPU99077057ST -0.11541155</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 0.9584053 0.625000 CCMD10032470ST-11-0 -0.06129217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      0.9803426 0.500000      MMPU29365221ST -0.02864206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      0.9035595 0.890625      MMPU68403337ST -0.14630854</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST      0.9411051 0.640625      MMPU72854103ST -0.08757229</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      0.8285715 1.000000      MMPU84450604ST -0.27130195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      0.8640467 0.984375      MMPU99077057ST -0.21081880</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 0.9033809 0.906250 CCMD10032470ST-11-0 -0.14659362</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       study_name          subject_id body_site study_condition</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      WirbelJ_2018 CCMD11006829ST-21-0     stool             CRC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      WirbelJ_2018 CCMD12232071ST-21-0     stool             CRC</span>
