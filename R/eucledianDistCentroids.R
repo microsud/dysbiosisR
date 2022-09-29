@@ -66,7 +66,8 @@ euclideanDistCentroids <- function(x = NULL,
   main.sam.df <- cent.df <- cent.df.wide <- score <- CentroidDist <- Item <- NULL
   CentroidDist_Item <- CentroidDistance <- CentroidGroup <- NULL
   # main.sam.df <- cent.df <- cent.df.wide <- score <- CentroidDist <- Item <- NULL
-  if(is.null(x) || is.null(dist_mat) ||
+  if(is.null(x) ||
+     is.null(dist_mat) ||
      is.null(group_col) ||
      is.null(control_label) ||
      is.null(case_label)){

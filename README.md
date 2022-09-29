@@ -9,7 +9,7 @@ measures from microbiota profiling data.
 
 ## Installation
 
-You can install the development version of `dysbiosisR` like so:
+You can install the development version of `dysbiosisR` like this:
 
 ``` 
 devtools::install_github("microsud/dysbiosisR")
@@ -41,7 +41,9 @@ Shetty SA, et al., 2022. _dysbiosisR_: An R package to calculate common dysbiosi
 
 4. Montassier E, Al-Ghalith GA, Hillmann B, Viskocil K, Kabage AJ, McKinlay CE, Sadowsky MJ, Khoruts A, Knights D. 2018. CLOUD: a non-parametric detection test for microbiome outliers. Microbiome 6:137. 10.1186/s40168-018-0514-4.   
 
-5. Saffouri GB, Shields-Cutler RR, Chen J, Yang Y, Lekatz HR, Hale VL, Cho JM, Battaglioli EJ, Bhattarai Y, Thompson KJ, Kalari KK, Behera G, Berry JC, Peters SA, Patel R, Schuetz AN, Faith JJ, Camilleri M, Sonnenburg JL, Farrugia G, Swann JR, Grover M, Knights D, Kashyap PC. 2019. Small intestinal microbial dysbiosis underlies symptoms associated with functional gastrointestinal disorders. Nat Commun 10:2012. 10.1038/s41467-019-09964-7.  
+5. Saffouri GB, Shields-Cutler RR, Chen J, Yang Y, Lekatz HR, Hale VL, Cho JM, Battaglioli EJ, Bhattarai Y, Thompson KJ, Kalari KK, Behera G, Berry JC, Peters SA, Patel R, Schuetz AN, Faith JJ, Camilleri M, Sonnenburg JL, Farrugia G, Swann JR, Grover M, Knights D, Kashyap PC. 2019. Small intestinal microbial dysbiosis underlies symptoms associated with functional gastrointestinal disorders. Nat Commun 10:2012. 10.1038/s41467-019-09964-7.   
+
+6. Wei, S., Bahl, M.I., Baunwall, S.M.D., Hvas, C.L. and Licht, T.R., 2021. Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances. Applied and Environmental Microbiology, 87(11), pp.e00395-21.   
 
 ### Acknowledgement    
 This work was done within the Microbiome Group at the RIVM and Medical Microbiology and Infection Prevention at UMC Groningen.  

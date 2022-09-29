@@ -149,7 +149,7 @@ Here, the `CentroidDist_score` can be used as a dysbiosis score.
 ```{r}
 # order the data 
 dysbiosis_2$disease <- factor(dysbiosis_2$disease, 
-                                levels = c("healthy", "CRC"))
+                              levels = c("healthy", "CRC"))
 
 roc_2 <- pROC::roc(as.factor(dysbiosis_2$disease),
                    dysbiosis_2$CentroidDist_score ,
@@ -170,7 +170,7 @@ p3 <- plotDysbiosis(df=dysbiosis_2,
                     yvar="CentroidDist_score",
                     colors=c(CRC="brown3", healthy="steelblue"),
                     show_points = FALSE) +
-  labs(x="", y="Dysbiosis CLOUD Score")
+  labs(x="", y="Dysbiosis Score (Centroid)")
 p3
 ```
 
@@ -196,7 +196,7 @@ p4
 ```{r}
 # order the data 
 dysbiosis_3$disease <- factor(dysbiosis_3$disease, 
-                                levels = c("healthy", "CRC"))
+                              levels = c("healthy", "CRC"))
 
 roc_3 <- pROC::roc(as.factor(dysbiosis_3$disease),
                    dysbiosis_3$ShannonJSDScore ,
@@ -295,6 +295,7 @@ p5 <- plotDysbiosis(df=dysbiosis.oob,
 p5
 ```
 
+# Additional  
 Compare all five dysbiosis scores  
 ```{r}
 
@@ -305,8 +306,33 @@ all.dysbiosis <- data.frame(cbind(dysbiosis_1["score"],
                                   cloud.results["log2Stats"]))
 head(all.dysbiosis)
 ```
+The different dysbiosis score can be investigated in the context of specific host features.  
 
+```{r fig.width=5, fig.height=3, fig.align='center'}
+# Age
+p1 <- cbind(all.dysbiosis,
+      dysbiosis_1[c("age","BMI", "disease")]) |> 
+  ggplot(aes(age,CentroidDist_score,color=disease)) +
+  geom_point() +
+  theme_bw(base_size = 12) +
+  geom_smooth() +
+  scale_color_manual("Group", values = c(CRC="brown3", healthy="steelblue"))+
+  labs(y="Dysbiosis Score (Centroid)")
+p1
+```
 
+```{r fig.width=5, fig.height=3, fig.align='center'}
+# BMI  
+p2 <- cbind(all.dysbiosis,
+      dysbiosis_1[c("age","BMI", "disease")]) |> 
+  ggplot(aes(BMI,CentroidDist_score,color=disease)) +
+  geom_point() +
+  theme_bw(base_size = 12) +
+  geom_smooth()+
+  scale_color_manual("Group", values = c(CRC="brown3", healthy="steelblue")) +
+  labs(y="Dysbiosis Score (Centroid)")
+p2
+```
 
 
 ```{r}
