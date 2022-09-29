@@ -49,7 +49,6 @@ data("WirbelJ_2018")
 # near 100 val
 dysbiosis.oob <- dysbiosisOBB(WirbelJ_2018,
                               group_col = "disease",
-                              control_label = "healthy",
                               case_label = "CRC",
                               seed_value = 1235,
                               add_tuneRF_params = list(ntreeTry=100,

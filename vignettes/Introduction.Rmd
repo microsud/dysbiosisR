@@ -32,11 +32,12 @@ We would also like to direct the readers and users to debates surrounding the co
 
 3. [Dysbiosis is not an answer](https://doi.org/10.1038/nmicrobiol.2016.228)   
 
-
+# Load libraries  
 ```{r setup}
 library(dysbiosisR)
 library(ggplot2)
 library(microbiome)
+library(dplyr)
 data("WirbelJ_2018")
 ```
 
@@ -82,17 +83,133 @@ dysbiosis_1 <- dysbiosisMedianCLV(WirbelJ_2018,
 
 ```
 
+The original article identifies highly divergent samples from the reference set using the 90th percentile of the dysbiosis score. This can be identified using the `quantile` function.  
+
+```{r}
+dysbiosis_thres <- quantile(filter(dysbiosis_1, disease == "CRC")$score, 0.9)
+normobiosis_thres <- quantile(filter(dysbiosis_1, disease == "CRC")$score, 0.1)
+
+dysbiosis_1 <- dysbiosis_1 |> 
+  mutate(isDysbiostic = ifelse(score >= dysbiosis_thres, TRUE, FALSE))
+
+# check in each group how many satisfy the threshold 
+dysbiosis_1 |> 
+  dplyr::count(disease, isDysbiostic)
+```
+
 Visualize Dysbiosis Score between CRC and healthy group.  
 ```{r fig.width=5, fig.height=3, fig.align='center'}
 p1 <- plotDysbiosis(df=dysbiosis_1,
-              xvar="disease",
-              yvar="score",
-              colors=c(CRC="brown3", healthy="steelblue"),
-              show_points = FALSE) +
+                    xvar="disease",
+                    yvar="score",
+                    colors=c(CRC="brown3", healthy="steelblue"),
+                    show_points = FALSE) +
   labs(x="", y="Dysbiosis Score") +
   theme_bw(base_size = 14)
 p1
 ```
+
+```{r}
+# order the data 
+dysbiosis_1$disease <- factor(dysbiosis_1$disease, 
+                              levels = c("healthy", "CRC"))
+
+roc_1 <- pROC::roc(as.factor(dysbiosis_1$disease),
+                   dysbiosis_1$score ,
+                   #direction= ">",
+                   plot=TRUE,
+                   ci = TRUE,
+                   auc.polygon=TRUE,
+                   max.auc.polygon=TRUE,
+                   grid=TRUE,
+                   print.auc=TRUE)
+```
+
+The AUC for this approach is 0.6469.  
+
+## Dysbiosis score based on Euclidean distance to group centroids   
+
+Calculates difference in `euclidean distance (ED)` for a sample 
+to group centroids. For example, sample_1 to control centroid minus
+sample_1 to case centroid. The user can provide a custom distance matrix. 
+This approach was used in [AlShawaqfeh MK et al. (2017)](https://doi.org/10.1093/femsec/fix136).
+
+```{r}
+dysbiosis_2 <- euclideanDistCentroids(WirbelJ_2018,
+                                      dist_mat = dist.mat,
+                                      use_squared = TRUE,
+                                      group_col = "disease",
+                                      control_label = "healthy",
+                                      case_label = "CRC")
+dysbiosis_2[1:3,1:3]
+```
+
+Here, the `CentroidDist_score` can be used as a dysbiosis score.  
+
+```{r}
+# order the data 
+dysbiosis_2$disease <- factor(dysbiosis_2$disease, 
+                                levels = c("healthy", "CRC"))
+
+roc_2 <- pROC::roc(as.factor(dysbiosis_2$disease),
+                   dysbiosis_2$CentroidDist_score ,
+                   #direction= ">",
+                   plot=TRUE,
+                   ci = TRUE,
+                   auc.polygon=TRUE,
+                   max.auc.polygon=TRUE,
+                   grid=TRUE,
+                   print.auc=TRUE)
+```
+
+The AUC for this approach is 0.797.    
+
+```{r fig.width=5, fig.height=3, fig.align='center'}
+p3 <- plotDysbiosis(df=dysbiosis_2,
+                    xvar="disease",
+                    yvar="CentroidDist_score",
+                    colors=c(CRC="brown3", healthy="steelblue"),
+                    show_points = FALSE) +
+  labs(x="", y="Dysbiosis CLOUD Score")
+p3
+```
+
+## Combined Alpha Beta Diveristy Based Score     
+
+The combined alpha-beta diversity approach was used by [Santiago M E et al. 2019](http://www.aimspress.com/article/10.3934/microbiol.2019.1.1). This approach uses Shannon diversity as the alpha diversity measure and Jensen–Shannon divergence as the beta diversity measure. The score is mean difference of Shannon diversity between test sample and all references samples multiplied by the mean JSD of the test sample to all reference samples. When calculating this score for reference samples, the sample being used is excluded from calculating means for alpha and beta diversity.
+
+```{r}
+dysbiosis_3 <- combinedShannonJSD(WirbelJ_2018,
+                                  reference_samples = ref.samples)
+dysbiosis_3[1:3,1:3]
+```
+
+```{r fig.width=5, fig.height=3, fig.align='center'}
+p4 <- plotDysbiosis(df=dysbiosis_3,
+                    xvar="disease",
+                    yvar="ShannonJSDScore",
+                    colors=c(CRC="brown3", healthy="steelblue"),
+                    show_points = FALSE)+
+  labs(x="", y="Shannon-JSD\nDysbiosis Score")
+p4
+```
+```{r}
+# order the data 
+dysbiosis_3$disease <- factor(dysbiosis_3$disease, 
+                                levels = c("healthy", "CRC"))
+
+roc_3 <- pROC::roc(as.factor(dysbiosis_3$disease),
+                   dysbiosis_3$ShannonJSDScore ,
+                   #direction= ">",
+                   plot=TRUE,
+                   ci = TRUE,
+                   auc.polygon=TRUE,
+                   max.auc.polygon=TRUE,
+                   grid=TRUE,
+                   print.auc=TRUE)
+```
+
+The AUC for this approach is 0.582.  
 
 ## Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test   
 Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test is a non-parametric
@@ -120,60 +237,32 @@ cloud.results[1:3,1:5]
 ```
 Here, the `log2Stats` can be used as a dysbiosis score.  
 
+```{r}
+# order the data 
+cloud.results$disease <- factor(cloud.results$disease, 
+                                levels = c("healthy", "CRC"))
+
+roc_4 <- pROC::roc(as.factor(cloud.results$disease),
+                   cloud.results$log2Stats ,
+                   #direction= ">",
+                   plot=TRUE,
+                   ci = TRUE,
+                   auc.polygon=TRUE,
+                   max.auc.polygon=TRUE,
+                   grid=TRUE,
+                   print.auc=TRUE)
+```
+
+The AUC for this approach is 0.551.    
+
 ```{r fig.width=5, fig.height=3, fig.align='center'}
 p2 <- plotDysbiosis(df=cloud.results,
-              xvar="disease",
-              yvar="log2Stats",
-              colors=c(CRC="brown3", healthy="steelblue")) +
+                    xvar="disease",
+                    yvar="log2Stats",
+                    colors=c(CRC="brown3", healthy="steelblue"),
+                    show_points = FALSE) +
   labs(x="", y="Dysbiosis CLOUD Score")
 p2
-```
-
-
-## Dysbiosis score based on Euclidean distance to group centroids   
-
-Calculates difference in `euclidean distance (ED)` for a sample 
-to group centroids. For example, sample_1 to control centroid minus
-sample_1 to case centroid. The user can provide a custom distance matrix. 
-This approach was used in [AlShawaqfeh MK et al. (2017)](https://doi.org/10.1093/femsec/fix136).
-
-```{r}
-dysbiosis_2 <- euclideanDistCentroids(WirbelJ_2018,
-                                      dist_mat = dist.mat,
-                                      use_squared = TRUE,
-                                      group_col = "disease",
-                                      control_label = "healthy",
-                                      case_label = "CRC")
-dysbiosis_2[1:3,1:3]
-```
-
-Here, the `CentroidDist_score` can be used as a dysbiosis score.  
-```{r fig.width=5, fig.height=3, fig.align='center'}
-p3 <- plotDysbiosis(df=dysbiosis_2,
-              xvar="disease",
-              yvar="CentroidDist_score",
-              colors=c(CRC="brown3", healthy="steelblue")) +
-  labs(x="", y="Dysbiosis CLOUD Score")
-p3
-```
-
-## Combined Alpha Beta Diveristy Based Score     
-
-The combined alpha-beta diversity approach was used by [Santiago M E et al. 2019](http://www.aimspress.com/article/10.3934/microbiol.2019.1.1). This approach uses Shannon diversity as the alpha diversity measure and Jensen–Shannon divergence as the beta diversity measure. The score is mean difference of Shannon diversity between test sample and all references samples multiplied by the mean JSD of the test sample to all reference samples. When calculating this score for reference samples, the sample being used is excluded from calculating means for alpha and beta diversity.
-
-```{r}
-dysbiosis_3 <- combinedShannonJSD(WirbelJ_2018,
-                                  reference_samples = ref.samples)
-dysbiosis_3[1:3,1:3]
-```
-
-```{r fig.width=5, fig.height=3, fig.align='center'}
-p4 <- plotDysbiosis(df=dysbiosis_3,
-              xvar="disease",
-              yvar="ShannonJSDScore",
-              colors=c(CRC="brown3", healthy="steelblue"))+
-  labs(x="", y="Shannon-JSD\nDysbiosis Score")
-p4
 ```
 
 ## Random Forest Prediction Based Score  
@@ -184,7 +273,6 @@ The original article [Saffouri GB, Shields-Cutler R et al. 2019](https://doi.org
 # near 100 val
 dysbiosis.oob <- dysbiosisOBB(WirbelJ_2018,
                               group_col = "disease",
-                              control_label = "healthy",
                               case_label = "CRC",
                               seed_value = 1235,
                               add_tuneRF_params = list(ntreeTry=100,
@@ -199,9 +287,10 @@ dysbiosis.oob <- dysbiosisOBB(WirbelJ_2018,
 Visualize 
 ```{r fig.width=5, fig.height=3, fig.align='center'}
 p5 <- plotDysbiosis(df=dysbiosis.oob,
-              xvar="disease",
-              yvar="oob.score",
-              colors=c(CRC="brown3", healthy="steelblue"))+
+                    xvar="disease",
+                    yvar="oob.score",
+                    colors=c(CRC="brown3", healthy="steelblue"),
+                    show_points = FALSE)+
   labs(x="", y="OOB Dysbiosis Score")
 p5
 ```
@@ -216,6 +305,8 @@ all.dysbiosis <- data.frame(cbind(dysbiosis_1["score"],
                                   cloud.results["log2Stats"]))
 head(all.dysbiosis)
 ```
+
+
 
 
 ```{r}

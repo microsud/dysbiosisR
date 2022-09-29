@@ -59,13 +59,14 @@ plotDysbiosis <- function(df=NULL,
   if(is.null(colors)){
     pgrp <- df |>
       ggplot2::ggplot(ggplot2::aes_string(x=xvar, y=yvar, group=xvar)) +
-      ggplot2::geom_boxplot(width = 0.1,
-                            alpha = 0.1,
-                            outlier.shape = NA) +
+      # ggplot2::geom_boxplot(width = 0.1,
+      #                       alpha = 0.1,
+      #                       outlier.shape = NA) +
       ggdist::stat_halfeye(color = "black",
                            size=1,
                            adjust = 0.5,
-                           justification = -0.1)
+                           #justification = -0.1
+                           )
     if(show_points){
       pgrp <- pgrp + ggplot2::geom_jitter(shape = 21,
                                           size = 2,
@@ -83,13 +84,14 @@ plotDysbiosis <- function(df=NULL,
                                           y=yvar,
                                           fill = xvar,
                                           group=xvar)) +
-      ggplot2::geom_boxplot(width = 0.1,
-                            alpha = 0.1,
-                            outlier.shape = NA) +
+      # ggplot2::geom_boxplot(width = 0.1,
+      #                       alpha = 0.1,
+      #                       outlier.shape = NA) +
       ggdist::stat_halfeye(color = "black",
                            size=1,
                            adjust = 0.5,
-                           justification = -0.1)
+                           #justification = -0.1
+                           )
 
     if(show_points){
       pgrp <- pgrp + ggplot2::geom_jitter(shape = 21,

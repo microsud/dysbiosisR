@@ -48,6 +48,11 @@ NULL
 combinedShannonJSD <- function(x = NULL,
                                reference_samples = NULL){
   jsd.mat <- shannon.df <- all.res.score <- ids <- NULL
+
+  if(is.null(reference_samples)){
+    stop("Please provide reference_samples")
+  }
+
   jsd.mat <- phyloseq::distance(x, method = "jsd")
   shannon.df <- microbiome::diversity(x, index = "shannon")
 
