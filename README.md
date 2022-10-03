@@ -5,7 +5,7 @@
 <!-- badges: end -->
 
 The *dysbiosisR* package implements tools for calculating some common dysbiosis 
-measures from microbiota profiling data.
+measures from microbiota profiling data.   
 
 ## Installation
 
@@ -46,7 +46,7 @@ Shetty SA, et al., 2022. _dysbiosisR_: An R package to calculate common dysbiosi
 6. Wei, S., Bahl, M.I., Baunwall, S.M.D., Hvas, C.L. and Licht, T.R., 2021. Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances. Applied and Environmental Microbiology, 87(11), pp.e00395-21.   
 
 ### Acknowledgement    
-This work was done within the Microbiome Group at the RIVM and Medical Microbiology and Infection Prevention at UMC Groningen.  
+This work was done at the Department of Medical Microbiology and Infection Prevention at UMC Groningen in collaboration with the Microbiome Group at the RIVM.   
 
 ### Contact    
 Sudarshan A. Shetty (sudarshanshetty9[@]gmail[dot]com)    

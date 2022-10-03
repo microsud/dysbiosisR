@@ -41,6 +41,12 @@ library(dplyr)
 data("WirbelJ_2018")
 ```
 
+Print the available methods.  
+```{r}
+dysbiosisOverview()
+```
+
+
 Here we use the test data from Wirbel J et al., (2018). The data consists of CRC and controls samples.  
 
 # Data   
@@ -213,17 +219,12 @@ The AUC for this approach is 0.582.
 
 ## Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test   
 Cloud-based LOcally linear Unbiased Dysbiosis (CLOUD) test is a non-parametric
-test and returns a measure of dysbiosis. The function was adapted from
-the original article by [Montassier E et al. 2018](https://doi.org/10.1186/s40168-018-0514-4). 
-Here, a user defines a set of reference samples from which distance of every other sample is
-calculated. An important aspect to note in this function is that the method
-is slightly modified to accommodate equal number of samples in reference and test
-group. When calculating the \code{CLOUD} stats for reference samples the
-number of neighbors is defined as number of reference samples minus 1. For
-test samples, IF number of test samples matches number of samples in
-reference group, then number of neighbors is also defined as number of
-reference samples minus 1. This is done to avoid returning NAs in outputs
-while retaining maximum number of reference samples.
+test and returns a measure of dysbiosis. The function was adapted from 
+the original article by [Montassier E et al. 2018](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0514-4). 
+Here, a user defines a set of reference samples from which distance of every 
+other sample is calculated. When calculating the `CLOUD` stats the _k_ is an 
+important parameter specified by argument `k_num`. By default we use a 
+conservative 80 percent of the samples in each group.
 
 ```{r}
 
@@ -231,7 +232,7 @@ cloud.results <- cloudStatistic(WirbelJ_2018,
                                 dist_mat = dist.mat,
                                 reference_samples = ref.samples,
                                 ndim=-1,
-                                k_num=80)
+                                k_num=5)
 cloud.results[1:3,1:5]
 
 ```
@@ -253,7 +254,7 @@ roc_4 <- pROC::roc(as.factor(cloud.results$disease),
                    print.auc=TRUE)
 ```
 
-The AUC for this approach is 0.551.    
+The AUC for this approach is 0.631.    
 
 ```{r fig.width=5, fig.height=3, fig.align='center'}
 p2 <- plotDysbiosis(df=cloud.results,
@@ -295,44 +296,7 @@ p5 <- plotDysbiosis(df=dysbiosis.oob,
 p5
 ```
 
-# Additional  
-Compare all five dysbiosis scores  
-```{r}
-
-all.dysbiosis <- data.frame(cbind(dysbiosis_1["score"], 
-                                  dysbiosis_2["CentroidDist_score"], 
-                                  dysbiosis_3["ShannonJSDScore"], 
-                                  dysbiosis.oob["oob.score"], 
-                                  cloud.results["log2Stats"]))
-head(all.dysbiosis)
-```
-The different dysbiosis score can be investigated in the context of specific host features.  
-
-```{r fig.width=5, fig.height=3, fig.align='center'}
-# Age
-p1 <- cbind(all.dysbiosis,
-      dysbiosis_1[c("age","BMI", "disease")]) |> 
-  ggplot(aes(age,CentroidDist_score,color=disease)) +
-  geom_point() +
-  theme_bw(base_size = 12) +
-  geom_smooth() +
-  scale_color_manual("Group", values = c(CRC="brown3", healthy="steelblue"))+
-  labs(y="Dysbiosis Score (Centroid)")
-p1
-```
-
-```{r fig.width=5, fig.height=3, fig.align='center'}
-# BMI  
-p2 <- cbind(all.dysbiosis,
-      dysbiosis_1[c("age","BMI", "disease")]) |> 
-  ggplot(aes(BMI,CentroidDist_score,color=disease)) +
-  geom_point() +
-  theme_bw(base_size = 12) +
-  geom_smooth()+
-  scale_color_manual("Group", values = c(CRC="brown3", healthy="steelblue")) +
-  labs(y="Dysbiosis Score (Centroid)")
-p2
-```
+All these measure may be influenced by host factors such as age, gender, bmi, etc. It is advised to investigate these factors when analyzing the dysbiosis measures.   
 
 
 ```{r}

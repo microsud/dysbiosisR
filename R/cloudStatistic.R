@@ -39,14 +39,12 @@
 #' cloud.results <- cloudStatistic(x= ps,
 #'                                 dist_mat = dist.data,
 #'                                 reference_samples = ref.samples,
-#'                                 ndim=-1)
+#'                                 ndim=-1,
+#'                                 k_num=80)
 #' head(cloud.results)
 #'
 #' @references
 #' \itemize{
-#' \item{}{Lloyd-Price J, Arze C, Ananthakrishnan AN et al. (2019).
-#' Multi-omics of the gut microbial ecosystem in inflammatory bowel diseases.
-#' \emph{Nature}, 569(7758), pp.655-662.}
 #'
 #' \item{}{Montassier E et al. (2018). CLOUD: a non-parametric detection test
 #' for microbiome outliers.
@@ -103,13 +101,15 @@ cloudStatistic <- function(x =NULL,
                                   k = k.num.test, #k.num,
                                   ndim = -1)
   test.stat.df$log2Stats <- log2(test.stat.df$stats)
-  #test.stat.df$group <- "test"
-
+  rownames(test.stat.df) <- test.stat.df$ids
   all.res <- rbind(ref.stat.df, test.stat.df)
 
   main.sam.df <- meta(x)
-  rownames(all.res) <- all.res$ids
-  return(cbind(all.res,main.sam.df))
+
+  main.sam.df$ids <- rownames(main.sam.df)
+  all.res.df <- merge(all.res, main.sam.df, by="ids")
+  rownames(all.res.df) <- all.res.df$ids
+  return(all.res.df[,-1])
 }
 
 # code from  Montassier E et al.

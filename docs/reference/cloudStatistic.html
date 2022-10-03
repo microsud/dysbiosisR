@@ -102,10 +102,7 @@ conservative 80 percent of the samples in each group.</p>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     
-<ul><li><p>Lloyd-Price J, Arze C, Ananthakrishnan AN et al. (2019).
-Multi-omics of the gut microbial ecosystem in inflammatory bowel diseases.
-<em>Nature</em>, 569(7758), pp.655-662.</p></li>
-<li><p>Montassier E et al. (2018). CLOUD: a non-parametric detection test
+<ul><li><p>Montassier E et al. (2018). CLOUD: a non-parametric detection test
 for microbiome outliers.
 <em>Microbiome</em>, 6(1), pp.1-10.</p></li>
 </ul></div>
@@ -126,57 +123,58 @@ for microbiome outliers.
 <span class="r-in"><span><span class="va">cloud.results</span> <span class="op">&lt;-</span> <span class="fu">cloudStatistic</span><span class="op">(</span>x<span class="op">=</span> <span class="va">ps</span>,</span></span>
 <span class="r-in"><span>                                dist_mat <span class="op">=</span> <span class="va">dist.data</span>,</span></span>
 <span class="r-in"><span>                                reference_samples <span class="op">=</span> <span class="va">ref.samples</span>,</span></span>
-<span class="r-in"><span>                                ndim<span class="op">=</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                                ndim<span class="op">=</span><span class="op">-</span><span class="fl">1</span>,</span></span>
+<span class="r-in"><span>                                k_num<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cloud.results</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         stats    pvals                 ids   log2Stats</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      0.9803426 0.500000      MMPU29365221ST -0.02864206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      0.9035595 0.890625      MMPU68403337ST -0.14630854</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST      0.9411051 0.640625      MMPU72854103ST -0.08757229</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      0.8285715 1.000000      MMPU84450604ST -0.27130195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      0.8640467 0.984375      MMPU99077057ST -0.21081880</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 0.9033809 0.906250 CCMD10032470ST-11-0 -0.14659362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       study_name          subject_id body_site study_condition</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST      WirbelJ_2018 CCMD11006829ST-21-0     stool             CRC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST      WirbelJ_2018 CCMD12232071ST-21-0     stool             CRC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST      WirbelJ_2018 CCMD13071240ST-21-0     stool             CRC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST      WirbelJ_2018 CCMD13934959ST-21-0     stool             CRC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST      WirbelJ_2018 CCMD14479708ST-21-0     stool             CRC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 WirbelJ_2018 CCMD18872694ST-21-0     stool             CRC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     disease age age_category gender country non_westernized</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST          CRC  42        adult female     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST          CRC  75       senior   male     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST          CRC  66       senior female     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST          CRC  56        adult   male     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST          CRC  74       senior   male     DEU              no</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0     CRC  63        adult   male     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         stats     pvals    log2Stats   study_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 0.9033809 0.9062500 -0.146593618 WirbelJ_2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10191450ST-11-0 0.9684812 0.5468750 -0.046204044 WirbelJ_2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD11006829ST-21-0 0.9989867 0.4237288 -0.001462691 WirbelJ_2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD12232071ST-21-0 0.9802657 0.4915254 -0.028755231 WirbelJ_2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13071240ST-21-0 0.9229982 0.8135593 -0.115600336 WirbelJ_2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13934959ST-21-0 0.8514881 1.0000000 -0.231941651 WirbelJ_2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              subject_id body_site study_condition disease age</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 CCMD10032470ST-11-0     stool         control healthy  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10191450ST-11-0 CCMD10191450ST-11-0     stool         control healthy  62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD11006829ST-21-0 CCMD11006829ST-21-0     stool             CRC     CRC  42</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD12232071ST-21-0 CCMD12232071ST-21-0     stool             CRC     CRC  75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13071240ST-21-0 CCMD13071240ST-21-0     stool             CRC     CRC  66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13934959ST-21-0 CCMD13934959ST-21-0     stool             CRC     CRC  56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     age_category gender country non_westernized</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0        adult   male     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10191450ST-11-0        adult female     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD11006829ST-21-0        adult female     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD12232071ST-21-0       senior   male     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13071240ST-21-0       senior female     DEU              no</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13934959ST-21-0        adult   male     DEU              no</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     sequencing_platform DNA_extraction_kit     PMID</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST            IlluminaHiSeq              Gnome 30936547</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST            IlluminaHiSeq              Gnome 30936547</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST            IlluminaHiSeq              Gnome 30936547</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST            IlluminaHiSeq              Gnome 30936547</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST            IlluminaHiSeq              Gnome 30936547</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0       IlluminaHiSeq              Gnome 30936547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10191450ST-11-0       IlluminaHiSeq              Gnome 30936547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD11006829ST-21-0       IlluminaHiSeq              Gnome 30936547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD12232071ST-21-0       IlluminaHiSeq              Gnome 30936547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13071240ST-21-0       IlluminaHiSeq              Gnome 30936547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13934959ST-21-0       IlluminaHiSeq              Gnome 30936547</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     number_reads number_bases minimum_read_length</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST          83456496   7310970279                  45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST          65269931   5370021950                   2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST          63427722   5486983593                  45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST          36979669   3186342244                  45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST          65475493   5637718108                  45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0     55300211   4780095276                  45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     median_read_length NCBI_accession      curator BMI    tnm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST                      94           &lt;NA&gt; Paolo_Manghi  35 t3n0m0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST                      88           &lt;NA&gt; Paolo_Manghi  28 t3n2m0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST                      93           &lt;NA&gt; Paolo_Manghi  23 t3n0m0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST                      93           &lt;NA&gt; Paolo_Manghi  27 t3n0m0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST                      92           &lt;NA&gt; Paolo_Manghi  26 t3n0m1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                 93           &lt;NA&gt; Paolo_Manghi  25 t3n1m0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                     ajcc nspecies group</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU29365221ST        ii      144  case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU68403337ST       iii      110  case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU72854103ST        ii      126  case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU84450604ST        ii      100  case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> MMPU99077057ST        iv      110  case</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0  iii      145  case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0     37708359   4639213592                  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10191450ST-11-0     34952407   4351849639                  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD11006829ST-21-0     83456496   7310970279                  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD12232071ST-21-0     65269931   5370021950                   2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13071240ST-21-0     63427722   5486983593                  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13934959ST-21-0     36979669   3186342244                  45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     median_read_length NCBI_accession                   curator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0                139     ERR2726404 Jacob_Wirbel;Paolo_Manghi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10191450ST-11-0                140     ERR2726405 Jacob_Wirbel;Paolo_Manghi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD11006829ST-21-0                 94           &lt;NA&gt;              Paolo_Manghi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD12232071ST-21-0                 88           &lt;NA&gt;              Paolo_Manghi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13071240ST-21-0                 93           &lt;NA&gt;              Paolo_Manghi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13934959ST-21-0                 93           &lt;NA&gt;              Paolo_Manghi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      BMI    tnm ajcc nspecies   group</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10032470ST-11-0 30.7   &lt;NA&gt; &lt;NA&gt;       72 control</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD10191450ST-11-0 28.5   &lt;NA&gt; &lt;NA&gt;       87 control</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD11006829ST-21-0 35.0 t3n0m0   ii      144    case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD12232071ST-21-0 28.0 t3n2m0  iii      110    case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13071240ST-21-0 23.0 t3n0m0   ii      126    case</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CCMD13934959ST-21-0 27.0 t3n0m0   ii      100    case</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

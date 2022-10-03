@@ -10,12 +10,12 @@ test_that("cloudStatistic works", {
                                   ndim=-1,
                                   k_num=80)
   cloud.test <- cloud.results$log2Stats[c(1:3,70:72)]
-  cloud.exp <- c(-0.02864206, -0.14630854, -0.08757229,
-               -0.13069932, -0.18592467,  0.07201936)
+  cloud.exp <- c(-0.146593618, -0.046204044, -0.001462691,
+                 0.025839734, -0.217112866, -0.199849374)
   expect_equal(cloud.test,cloud.exp, tolerance=1e-3)
 
   # check score location
-  expect_equal(colnames(cloud.results)[1:4], c("stats", "pvals", "ids","log2Stats"))
+  expect_equal(colnames(cloud.results)[1:3], c("stats", "pvals", "log2Stats"))
   #check all samples returned
   expect_equal(length(intersect(sample_names(WirbelJ_2018),
                                 rownames(cloud.results))),
@@ -27,12 +27,12 @@ test_that("cloudStatistic works", {
                                   ndim=-1,
                                   k_num=20)
   cloud.test2 <- cloud.results2$log2Stats[c(1:3,70:72)]
-  cloud.exp2 <- c(-0.21524677, -0.35087536, -0.32974244,
-                 -0.30326279, -0.47163967,  -0.07356939)
+  cloud.exp2 <- c(-0.3547425, -0.3307632, -0.1813477,
+                  -0.2242164, -0.4369376, -0.4498903)
   expect_equal(cloud.test2,cloud.exp2, tolerance=1e-3)
 
   # check score location
-  expect_equal(colnames(cloud.results2)[1:4], c("stats", "pvals", "ids","log2Stats"))
+  expect_equal(colnames(cloud.results2)[1:3], c("stats", "pvals", "log2Stats"))
   #check all samples returned
   expect_equal(length(intersect(sample_names(WirbelJ_2018),
                                 rownames(cloud.results2))),

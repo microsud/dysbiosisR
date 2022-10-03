@@ -46,15 +46,13 @@ dist.data <- phyloseq::distance(ps, "bray")
 cloud.results <- cloudStatistic(x= ps,
                                 dist_mat = dist.data,
                                 reference_samples = ref.samples,
-                                ndim=-1)
+                                ndim=-1,
+                                k_num=80)
 head(cloud.results)
 
 }
 \references{
 \itemize{
-\item{}{Lloyd-Price J, Arze C, Ananthakrishnan AN et al. (2019).
-Multi-omics of the gut microbial ecosystem in inflammatory bowel diseases.
-\emph{Nature}, 569(7758), pp.655-662.}
 
 \item{}{Montassier E et al. (2018). CLOUD: a non-parametric detection test
 for microbiome outliers.
