@@ -20,7 +20,7 @@ devtools::install_github("microsud/dysbiosisR")
 library(dysbiosisR)
 ```
 
-The package is currently under development and a stable version will be made available soon.  
+The package is currently in the Beta version and a stable version will be made available soon. We welcome feedback and suggestions.    
 
 ### Contribute
 
