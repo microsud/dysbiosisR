@@ -17,3 +17,7 @@ inst/doc
 #docs
 data-raw/tests/testthat.R
 *.pptx
+*.docx
+*.dotx
+data-raw/cabios-word-temp.zip
+data-raw/cabios-word-temp/Sample.pdf
