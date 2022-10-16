@@ -21,3 +21,5 @@ data-raw/tests/testthat.R
 *.dotx
 data-raw/cabios-word-temp.zip
 data-raw/cabios-word-temp/Sample.pdf
+*.tiff
+*.tif
