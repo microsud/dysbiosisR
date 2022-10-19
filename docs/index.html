@@ -77,39 +77,43 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
+  <main id="main" class="col-md-9">
+<div class="section level1">
 <div class="page-header">
 <img src="logo.png" class="logo" alt=""><h1 id="dysbiosisr-">dysbiosisR <a class="anchor" aria-label="anchor" href="#dysbiosisr-"></a>
 </h1>
 </div>
-<!-- badges: start -->
-<!-- badges: end -->
-<p>The <em>dysbiosisR</em> package implements tools for calculating some common dysbiosis measures from microbiota profiling data.</p>
+<p>The <em>dysbiosisR</em> package is a collection of functions to calculate some common dysbiosis measures from microbiota profiling data. The package currently supports microbiome data organized as phyloseq objects.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the development version of <code>dysbiosisR</code> like this:</p>
-<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"microsud/dysbiosisR"</span><span class="op">)</span></span></code></pre>
-<div class="section level3">
-<h3 id="load-pkg">Load pkg<a class="anchor" aria-label="anchor" href="#load-pkg"></a>
-</h3>
-<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microsud/dysbiosisR" class="external-link">dysbiosisR</a></span><span class="op">)</span></span></code></pre>
+<pre><code><span>    <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"microsud/dysbiosisR"</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="load-package">Load package<a class="anchor" aria-label="anchor" href="#load-package"></a>
+</h2>
+<pre><code><span>    <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/microsud/dysbiosisR" class="external-link">dysbiosisR</a></span><span class="op">)</span></span></code></pre>
 <p>The package is currently in the Beta version and a stable version will be made available soon. We welcome feedback and suggestions.</p>
 </div>
-<div class="section level3">
-<h3 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
-</h3>
+<div class="section level2">
+<h2 id="how-to-use">How to use<a class="anchor" aria-label="anchor" href="#how-to-use"></a>
+</h2>
+<p>Check out the <a href="https://microsud.github.io/dysbiosisR/articles/Introduction.html" class="external-link">dysbiosisR vignette</a> and <a href="https://microsud.github.io/dysbiosisR/reference/index.html" class="external-link">documentation of functions</a> for more details.</p>
+</div>
+<div class="section level2">
+<h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
+</h2>
 <p>Contributions and feedback are very welcome:</p>
 <ul>
 <li><a href="https://github.com/microsud/dysbiosisR/issues" class="external-link">Raise Issue</a></li>
 <li><a href="https://github.com/microsud/dysbiosisR" class="external-link">Star us on the Github page</a></li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="cite">Cite<a class="anchor" aria-label="anchor" href="#cite"></a>
-</h3>
+<div class="section level2">
+<h2 id="cite">Cite<a class="anchor" aria-label="anchor" href="#cite"></a>
+</h2>
 <p>Shetty SA, et al., 2022. <em>dysbiosisR</em>: An R package to calculate common dysbiosis measures.</p>
-</div>
 <div class="section level3">
 <h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h3>
@@ -122,19 +126,20 @@
 <li><p>Wei, S., Bahl, M.I., Baunwall, S.M.D., Hvas, C.L. and Licht, T.R., 2021. Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances. Applied and Environmental Microbiology, 87(11), pp.e00395-21.</p></li>
 </ol>
 </div>
-<div class="section level3">
-<h3 id="acknowledgement">Acknowledgement<a class="anchor" aria-label="anchor" href="#acknowledgement"></a>
-</h3>
+</div>
+<div class="section level2">
+<h2 id="acknowledgement">Acknowledgement<a class="anchor" aria-label="anchor" href="#acknowledgement"></a>
+</h2>
 <p>This work was done at the Department of Medical Microbiology and Infection Prevention at UMC Groningen in collaboration with the Microbiome Group at the RIVM.</p>
 </div>
-<div class="section level3">
-<h3 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
-</h3>
+<div class="section level2">
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h2>
 <p>Sudarshan A. Shetty (sudarshanshetty9[@]gmail[dot]com)<br>
 Susana Fuentes (susana[dot]fuentes[@]rivm[dot]nl)</p>
 </div>
 </div>
-</div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -166,7 +171,14 @@ Susana Fuentes (susana[dot]fuentes[@]rivm[dot]nl)</p>
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/microsud/dysbiosisR/blob/master/LICENSE.md" class="external-link"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange" alt="Lifecycle: experimental"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>

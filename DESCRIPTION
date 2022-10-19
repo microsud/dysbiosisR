@@ -24,7 +24,9 @@ Imports:
     randomForest,
     pROC,
     ggplot2,
-    ggdist
+    ggdist,
+    grDevices,
+    RColorBrewer
 Suggests: 
     testthat (>= 3.0.0),
     knitr,

@@ -10,8 +10,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  out.width = "100%",
-  dpi = 300,
+  out.width = "50%",
+  dpi = 150,
   comment = "#>",
   message = FALSE,
   warning = FALSE
@@ -92,8 +92,8 @@ dysbiosis_1 <- dysbiosisMedianCLV(WirbelJ_2018,
 The original article identifies highly divergent samples from the reference set using the 90th percentile of the dysbiosis score. This can be identified using the `quantile` function.  
 
 ```{r}
-dysbiosis_thres <- quantile(filter(dysbiosis_1, disease == "CRC")$score, 0.9)
-normobiosis_thres <- quantile(filter(dysbiosis_1, disease == "CRC")$score, 0.1)
+dysbiosis_thres <- quantile(subset(dysbiosis_1, disease == "CRC")$score, 0.9)
+normobiosis_thres <- quantile(subset(dysbiosis_1, disease == "CRC")$score, 0.1)
 
 dysbiosis_1 <- dysbiosis_1 |> 
   mutate(isDysbiostic = ifelse(score >= dysbiosis_thres, TRUE, FALSE))
@@ -296,7 +296,26 @@ p5 <- plotDysbiosis(df=dysbiosis.oob,
 p5
 ```
 
-All these measure may be influenced by host factors such as age, gender, bmi, etc. It is advised to investigate these factors when analyzing the dysbiosis measures.   
+All these measure may be influenced by host factors such as age, gender, bmi, etc. It is advised to investigate these factors when analyzing the dysbiosis measures.  
+
+# Gradient plot  
+Current dysbiosis measures do not necessarily reveal a black and white classification of healthy and disease states. This is a challenge in gut microbiome research where individuality plays an important role. 
+We can visualize this gradient with `plotDysbiosisGradient`. To demonstrate this, we use the results from the `dysbiosisMedianCLV` approach along with the `dysbiosis_thres` and `normobiosis_thres`.       
+```{r fig.width=3, fig.height=5}
+
+# define gradient cols
+browns <- c("#723d46", "#86525b", "#996770", "#ad7d86", "#c1949d", "#d6abb4", "#eac3cc", "#ede5e6")
+
+plotDysbiosisGradient(df=dysbiosis_1,
+                      score="score",
+                      high_line = dysbiosis_thres,
+                      low_line = normobiosis_thres,
+                      group_var = "disease",
+                      group_colors=c("healthy" = "steelblue", "CRC"= "brown3"),
+                      point_size = 2,
+                      bg_colors = browns)
+  
+```
 
 
 ```{r}
