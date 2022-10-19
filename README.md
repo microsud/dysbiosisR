@@ -3,6 +3,9 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/microsud/dysbiosisR/blob/master/LICENSE.md) 
+![GitHub Repo stars](https://img.shields.io/github/stars/microsud/dysbiosisR?style=social) 
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The *dysbiosisR* package implements tools for calculating some common dysbiosis 
