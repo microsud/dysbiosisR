@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">dysbiosisR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -339,12 +339,16 @@ conservative 80 percent of the samples in each group.</p>
 <span>                                dist_mat <span class="op">=</span> <span class="va">dist.mat</span>,</span>
 <span>                                reference_samples <span class="op">=</span> <span class="va">ref.samples</span>,</span>
 <span>                                ndim<span class="op">=</span><span class="op">-</span><span class="fl">1</span>,</span>
-<span>                                k_num<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
+<span>                                k_num<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span>
 <span><span class="va">cloud.results</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span><span class="co">#&gt;                         stats pvals  log2Stats   study_name          subject_id</span></span>
-<span><span class="co">#&gt; CCMD10032470ST-11-0 0.6673767     1 -0.5834267 WirbelJ_2018 CCMD10032470ST-11-0</span></span>
-<span><span class="co">#&gt; CCMD10191450ST-11-0 0.6603512     1 -0.5986947 WirbelJ_2018 CCMD10191450ST-11-0</span></span>
-<span><span class="co">#&gt; CCMD11006829ST-21-0 0.8141492     1 -0.2966349 WirbelJ_2018 CCMD11006829ST-21-0</span></span></code></pre></div>
+<span><span class="co">#&gt;                         stats     pvals    log2Stats   study_name</span></span>
+<span><span class="co">#&gt; CCMD10032470ST-11-0 0.9033809 0.9062500 -0.146593618 WirbelJ_2018</span></span>
+<span><span class="co">#&gt; CCMD10191450ST-11-0 0.9684812 0.5468750 -0.046204044 WirbelJ_2018</span></span>
+<span><span class="co">#&gt; CCMD11006829ST-21-0 0.9989867 0.4237288 -0.001462691 WirbelJ_2018</span></span>
+<span><span class="co">#&gt;                              subject_id</span></span>
+<span><span class="co">#&gt; CCMD10032470ST-11-0 CCMD10032470ST-11-0</span></span>
+<span><span class="co">#&gt; CCMD10191450ST-11-0 CCMD10191450ST-11-0</span></span>
+<span><span class="co">#&gt; CCMD11006829ST-21-0 CCMD11006829ST-21-0</span></span></code></pre></div>
 <p>Here, the <code>log2Stats</code> can be used as a dysbiosis
 score.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -439,16 +443,19 @@ To demonstrate this, we use the results from the
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># define gradient cols</span></span>
-<span><span class="va">browns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#723d46"</span>, <span class="st">"#86525b"</span>, <span class="st">"#996770"</span>, <span class="st">"#ad7d86"</span>, <span class="st">"#c1949d"</span>, <span class="st">"#d6abb4"</span>, <span class="st">"#eac3cc"</span>, <span class="st">"#ede5e6"</span><span class="op">)</span></span>
+<span><span class="va">browns</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#723d46"</span>, <span class="st">"#86525b"</span>, <span class="st">"#996770"</span>, <span class="st">"#ad7d86"</span>, </span>
+<span>            <span class="st">"#c1949d"</span>, <span class="st">"#d6abb4"</span>, <span class="st">"#eac3cc"</span>, <span class="st">"#ede5e6"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plotDysbiosisGradient.html">plotDysbiosisGradient</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">dysbiosis_1</span>,</span>
 <span>                      score<span class="op">=</span><span class="st">"score"</span>,</span>
 <span>                      high_line <span class="op">=</span> <span class="va">dysbiosis_thres</span>,</span>
 <span>                      low_line <span class="op">=</span> <span class="va">normobiosis_thres</span>,</span>
 <span>                      group_var <span class="op">=</span> <span class="st">"disease"</span>,</span>
-<span>                      group_colors<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"healthy"</span> <span class="op">=</span> <span class="st">"steelblue"</span>, <span class="st">"CRC"</span><span class="op">=</span> <span class="st">"brown3"</span><span class="op">)</span>,</span>
+<span>                      group_colors<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"healthy"</span> <span class="op">=</span> <span class="st">"steelblue"</span>, </span>
+<span>                                     <span class="st">"CRC"</span><span class="op">=</span> <span class="st">"brown3"</span><span class="op">)</span>,</span>
 <span>                      point_size <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>                      bg_colors <span class="op">=</span> <span class="va">browns</span><span class="op">)</span></span></code></pre></div>
+<span>                      bg_colors <span class="op">=</span> <span class="va">browns</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y<span class="op">=</span><span class="st">"Dysbiosis Score"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Introduction_files/figure-html/unnamed-chunk-21-1.png" width="50%"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
