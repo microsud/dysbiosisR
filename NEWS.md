@@ -1,6 +1,7 @@
 # dysbiosisR 1.0.2
 
 * Added distanceToRefeencePlane-function to the package.
+* Vignette update.  
 
 # dysbiosisR 1.0.1
 

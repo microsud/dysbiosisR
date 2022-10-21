@@ -19,7 +19,7 @@
 #' @param dist_mat A distance matrix. Can be output of \code{phyloseq::distance}
 #'                 or \code{vegan::vegdist}.
 #'
-#' @param k_num Neighbors to use. Default is 80 percent. User can
+#' @param k_num Neighbors to use. Default is 5 percent. User can
 #'              define percent of samples. See \code{Montassier E et al. 2018}
 #'              for more details.
 #'
@@ -40,7 +40,7 @@
 #'                                 dist_mat = dist.data,
 #'                                 reference_samples = ref.samples,
 #'                                 ndim=-1,
-#'                                 k_num=80)
+#'                                 k_num=5)
 #' head(cloud.results)
 #'
 #' @references
@@ -62,7 +62,7 @@ cloudStatistic <- function(x =NULL,
                            dist_mat = NULL,
                            reference_samples = NULL,
                            ndim=-1,
-                           k_num=80){
+                           k_num=5){
 
   if(is.null(x) || is.null(dist_mat) || is.null(reference_samples)){
     stop("All arguments must be specified")

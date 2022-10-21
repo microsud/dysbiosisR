@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">dysbiosisR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,7 +125,7 @@ is not an answer</a></p></li>
 <p>Print the available methods.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dysbiosisOverview.html">dysbiosisOverview</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; You are using dysbiosisR version: [1] '1.0.2'</span></span>
+<span><span class="co">#&gt; You are using dysbiosisR version: [1] '1.0.1'</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Following score (s) are currently supported</span></span>
 <span><span class="co">#&gt; 1. dysbiosisMedianCLV: Lloyd-Price J, Arze CAnanthakrishnan AN et al. (2019)</span></span>
@@ -133,8 +133,8 @@ is not an answer</a></p></li>
 <span><span class="co">#&gt; 3. cloudStatistic: Montassier E et al. (2018)</span></span>
 <span><span class="co">#&gt; 4. combinedShannonJSD: Santiago M et al. (2019)</span></span>
 <span><span class="co">#&gt; 5. dysbiosisOBB: Saffouri GB, Shields-Cutler R et al. (2019)</span></span></code></pre></div>
-<p>Here we use the test data from Wirbel J et al., (2018). The data
-consists of CRC and controls samples.</p>
+<p>Here we use the test data from <a href="https://doi.org/10.1038/s41591-019-0406-6" class="external-link">Wirbel J et al.,
+(2018)</a>. The data consists of CRC and controls samples.</p>
 </div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
@@ -211,7 +211,7 @@ be identified using the <code>quantile</code> function.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Dysbiosis Score"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span>
 <span><span class="va">p1</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># order the data </span></span>
 <span><span class="va">dysbiosis_1</span><span class="op">$</span><span class="va">disease</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dysbiosis_1</span><span class="op">$</span><span class="va">disease</span>, </span>
@@ -224,9 +224,8 @@ be identified using the <code>quantile</code> function.</p>
 <span>                   ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   grid<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-9-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.6469.</p>
 </div>
 <div class="section level3">
@@ -263,9 +262,8 @@ score.</p>
 <span>                   ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   grid<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-11-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.797.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotDysbiosis.html">plotDysbiosis</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">dysbiosis_2</span>,</span>
@@ -275,7 +273,7 @@ score.</p>
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Dysbiosis Score (Centroid)"</span><span class="op">)</span></span>
 <span><span class="va">p3</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-12-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="combined-alpha-beta-diveristy-based-score">Combined Alpha Beta Diveristy Based Score<a class="anchor" aria-label="anchor" href="#combined-alpha-beta-diveristy-based-score"></a>
@@ -304,7 +302,7 @@ means for alpha and beta diversity.</p>
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Shannon-JSD\nDysbiosis Score"</span><span class="op">)</span></span>
 <span><span class="va">p4</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-14-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># order the data </span></span>
 <span><span class="va">dysbiosis_3</span><span class="op">$</span><span class="va">disease</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dysbiosis_3</span><span class="op">$</span><span class="va">disease</span>, </span>
@@ -317,9 +315,8 @@ means for alpha and beta diversity.</p>
 <span>                   ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   grid<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-15-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-15-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.582.</p>
 </div>
 <div class="section level3">
@@ -339,16 +336,12 @@ conservative 80 percent of the samples in each group.</p>
 <span>                                dist_mat <span class="op">=</span> <span class="va">dist.mat</span>,</span>
 <span>                                reference_samples <span class="op">=</span> <span class="va">ref.samples</span>,</span>
 <span>                                ndim<span class="op">=</span><span class="op">-</span><span class="fl">1</span>,</span>
-<span>                                k_num<span class="op">=</span><span class="fl">80</span><span class="op">)</span></span>
+<span>                                k_num<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">cloud.results</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span><span class="co">#&gt;                         stats     pvals    log2Stats   study_name</span></span>
-<span><span class="co">#&gt; CCMD10032470ST-11-0 0.9033809 0.9062500 -0.146593618 WirbelJ_2018</span></span>
-<span><span class="co">#&gt; CCMD10191450ST-11-0 0.9684812 0.5468750 -0.046204044 WirbelJ_2018</span></span>
-<span><span class="co">#&gt; CCMD11006829ST-21-0 0.9989867 0.4237288 -0.001462691 WirbelJ_2018</span></span>
-<span><span class="co">#&gt;                              subject_id</span></span>
-<span><span class="co">#&gt; CCMD10032470ST-11-0 CCMD10032470ST-11-0</span></span>
-<span><span class="co">#&gt; CCMD10191450ST-11-0 CCMD10191450ST-11-0</span></span>
-<span><span class="co">#&gt; CCMD11006829ST-21-0 CCMD11006829ST-21-0</span></span></code></pre></div>
+<span><span class="co">#&gt;                         stats pvals  log2Stats   study_name          subject_id</span></span>
+<span><span class="co">#&gt; CCMD10032470ST-11-0 0.6673767     1 -0.5834267 WirbelJ_2018 CCMD10032470ST-11-0</span></span>
+<span><span class="co">#&gt; CCMD10191450ST-11-0 0.6603512     1 -0.5986947 WirbelJ_2018 CCMD10191450ST-11-0</span></span>
+<span><span class="co">#&gt; CCMD11006829ST-21-0 0.8141492     1 -0.2966349 WirbelJ_2018 CCMD11006829ST-21-0</span></span></code></pre></div>
 <p>Here, the <code>log2Stats</code> can be used as a dysbiosis
 score.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -363,9 +356,8 @@ score.</p>
 <span>                   ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   grid<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-17-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-17-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.631.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotDysbiosis.html">plotDysbiosis</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">cloud.results</span>,</span>
@@ -375,7 +367,7 @@ score.</p>
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Dysbiosis CLOUD Score"</span><span class="op">)</span></span>
 <span><span class="va">p2</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-18-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="random-forest-prediction-based-score">Random Forest Prediction Based Score<a class="anchor" aria-label="anchor" href="#random-forest-prediction-based-score"></a>
@@ -414,7 +406,7 @@ allows for calculating this measure with some level of freedom of
 <span><span class="co">#&gt; 0.08333333 0.01 </span></span>
 <span><span class="co">#&gt; mtry = 76    OOB error = 18.4% </span></span>
 <span><span class="co">#&gt; -0.04545455 0.01</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;"><img src="Introduction_files/figure-html/unnamed-chunk-19-2.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"><img src="Introduction_files/figure-html/unnamed-chunk-19-2.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Visualize</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotDysbiosis.html">plotDysbiosis</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">dysbiosis.oob</span>,</span>
@@ -424,70 +416,10 @@ allows for calculating this measure with some level of freedom of
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"OOB Dysbiosis Score"</span><span class="op">)</span></span>
 <span><span class="va">p5</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-20-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>All these measure may be influenced by host factors such as age,
-gender, bmi, etc. It is advised to investigate these factors when
+gender, BMI, etc. It is advised to investigate these factors when
 analyzing the dysbiosis measures.</p>
-</div>
-<div class="section level3">
-<h3 id="distance-to-reference-plane">Distance to reference plane<a class="anchor" aria-label="anchor" href="#distance-to-reference-plane"></a>
-</h3>
-<p>The original article <a href="https://www.nature.com/articles/nmicrobiol20174" class="external-link">Halfvarson J,
-Brislawn CJ, Lamendella R et al. 2017</a> reported a measure based on
-the deviation from a healthy or reference plane. The plane is fitted in
-PCoA-space based on user-defined distances between samples, for example
-a Bray-Curtis dissimilarity matrix. Briefly, a two-dimensional plane is
-fitted to the first three PCoA-coordinates of samples from healthy
-subjects using a least-squares method. Next, the distance between a
-given sample to the plane is calculated, which can be considered as a
-measure of deviation from normal.</p>
-<p>The original <a href="https://github.com/ElDeveloper/reference-plane" class="external-link">implementation</a>
-of the reference plane calculation was written in Python by the authors
-of the paper. Our R implementation was benchmarked against the original
-code and yields identical results.</p>
-<p>As with other measures based on a distance matrix, results can vary
-based on the distance chosen. Here, we applied the Bray-Curtis
-dissimilarity metric, whereas <a href="https://www.nature.com/articles/nmicrobiol20174" class="external-link">Halfvarson J et
-al.</a> used the UniFrac distance.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dtrp.results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/distanceToReferencePlane.html">distanceToReferencePlane</a></span><span class="op">(</span></span>
-<span>  <span class="va">WirbelJ_2018</span>,</span>
-<span>  dist_mat <span class="op">=</span> <span class="va">dist.mat</span>,</span>
-<span>  reference_samples <span class="op">=</span> <span class="va">ref.samples</span><span class="op">)</span></span>
-<span><span class="va">dtrp.results</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span>
-<span><span class="co">#&gt;                      dtrpScore   study_name          subject_id body_site</span></span>
-<span><span class="co">#&gt; CCMD11006829ST-21-0 0.05128249 WirbelJ_2018 CCMD11006829ST-21-0     stool</span></span>
-<span><span class="co">#&gt; CCMD12232071ST-21-0 0.22944516 WirbelJ_2018 CCMD12232071ST-21-0     stool</span></span>
-<span><span class="co">#&gt; CCMD13071240ST-21-0 0.14400941 WirbelJ_2018 CCMD13071240ST-21-0     stool</span></span>
-<span><span class="co">#&gt;                     study_condition</span></span>
-<span><span class="co">#&gt; CCMD11006829ST-21-0             CRC</span></span>
-<span><span class="co">#&gt; CCMD12232071ST-21-0             CRC</span></span>
-<span><span class="co">#&gt; CCMD13071240ST-21-0             CRC</span></span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># order the data </span></span>
-<span><span class="va">dtrp.results</span><span class="op">$</span><span class="va">disease</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dtrp.results</span><span class="op">$</span><span class="va">disease</span>, </span>
-<span>                               levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"healthy"</span>, <span class="st">"CRC"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">roc_6</span> <span class="op">&lt;-</span> <span class="fu">pROC</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pROC/man/roc.html" class="external-link">roc</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">dtrp.results</span><span class="op">$</span><span class="va">disease</span><span class="op">)</span>,</span>
-<span>                   <span class="va">dtrp.results</span><span class="op">$</span><span class="va">dtrpScore</span>,</span>
-<span>                   <span class="co">#direction= "&gt;",</span></span>
-<span>                   plot<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   grid<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-22-1.png" width="50%"></p>
-<p>The AUC for this approach is 0.561.</p>
-<p>Visualise</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p6</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotDysbiosis.html">plotDysbiosis</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">dtrp.results</span>,</span>
-<span>                    xvar<span class="op">=</span><span class="st">"disease"</span>,</span>
-<span>                    yvar<span class="op">=</span><span class="st">"dtrpScore"</span>,</span>
-<span>                    colors<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>CRC<span class="op">=</span><span class="st">"brown3"</span>, healthy<span class="op">=</span><span class="st">"steelblue"</span><span class="op">)</span>,</span>
-<span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Distance to reference plane Score"</span><span class="op">)</span></span>
-<span><span class="va">p6</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-23-1.png" width="50%" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div class="section level2">
@@ -501,7 +433,7 @@ demonstrate this, we can visualize this gradient with
 random forest prediction based score and <code>dysbiosisMedianCLV</code>
 approach along with the <code>dysbiosis_thres</code> and
 <code>normobiosis_thres</code> values we obtained above.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># define gradient cols</span></span>
 <span><span class="co"># browns &lt;- c("#723d46", "#86525b", "#996770", "#ad7d86", </span></span>
@@ -542,10 +474,10 @@ approach along with the <code>dysbiosis_thres</code> and
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">0.65</span>, y <span class="op">=</span> <span class="va">normobiosis_thres</span><span class="op">-</span><span class="fl">0.03</span>,</span>
 <span>                    label <span class="op">=</span> <span class="st">"Normobiosis\nThreshold"</span>, color<span class="op">=</span><span class="st">"white"</span><span class="op">)</span></span></code></pre></div>
 <p>Combine the two plots using <code>patchwork</code></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="va">p.obb</span> <span class="op">+</span> <span class="va">p.clv</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html" class="external-link">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-25-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-22-1.png" width="100%"></p>
 <p>Additional notes: The ROC AUC curves generated for a single data set
 are susceptible to over fitting or under fitting and therefore, the
 dysbiosis scores should be considered to be data specific. In order to
@@ -562,7 +494,7 @@ paramount importance.</p>
 different CRC stages compared to control gut microbiota? We can look at
 two measures, alpha diversity and dysbiosis score in different CRC
 stages.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># get alpha diversity example Shannon diversity  </span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/sample_data-methods.html" class="external-link">sample_data</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span><span class="op">)</span><span class="op">$</span><span class="va">shannon</span> <span class="op">&lt;-</span> <span class="fu">microbiome</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbiome/man/diversity.html" class="external-link">diversity</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span>, <span class="st">"shannon"</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
 <span></span>
@@ -589,8 +521,8 @@ stages.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span><span class="st">"Disease"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"healthy"</span> <span class="op">=</span> <span class="st">"steelblue"</span>, </span>
 <span>                                              <span class="st">"CRC"</span><span class="op">=</span> <span class="st">"brown3"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">shannon.plot</span> <span class="op">+</span> <span class="va">dys.plot</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html" class="external-link">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-26-1.png" width="50%"></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<p><img src="Introduction_files/figure-html/unnamed-chunk-23-1.png" width="100%"></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.2.1 (2022-06-23 ucrt)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span></span>
@@ -609,7 +541,7 @@ stages.</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] patchwork_1.1.2   dplyr_1.0.9       dysbiosisR_1.0.2  microbiome_1.18.0</span></span>
+<span><span class="co">#&gt; [1] patchwork_1.1.2   dplyr_1.0.9       dysbiosisR_1.0.1  microbiome_1.18.0</span></span>
 <span><span class="co">#&gt; [5] ggplot2_3.3.6     phyloseq_1.40.0  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>

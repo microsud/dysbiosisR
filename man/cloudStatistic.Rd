@@ -11,7 +11,7 @@
 \item{dist_mat}{A distance matrix. Can be output of \code{phyloseq::distance}
 or \code{vegan::vegdist}.}
 
-\item{k_num}{Neighbors to use. Default is 80 percent. User can
+\item{k_num}{Neighbors to use. Default is 5 percent. User can
 define percent of samples. See \code{Montassier E et al. 2018}
 for more details.}
 
@@ -47,7 +47,7 @@ cloud.results <- cloudStatistic(x= ps,
                                 dist_mat = dist.data,
                                 reference_samples = ref.samples,
                                 ndim=-1,
-                                k_num=80)
+                                k_num=5)
 head(cloud.results)
 
 }
