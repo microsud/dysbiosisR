@@ -3,12 +3,12 @@ Type: Package
 Title: Calculate Microbiome Dysbiosis
 Version: 1.0.2
 Authors@R:
-    person(given = "Sudarshan", family = "Shetty", role = c("aut", "cre"),
-    email = "sudarshanshetty9@gmail.com",
-    comment = c(ORCID = "0000-0001-7280-9915")),
-    person(given = "Wouter A.A.", family = "de Steenhuijsen Piters", role = c("ctb"),
-    email = "w.a.a.desteenhuijsenpiters@gmail.com",
-    comment = c(ORCID = "0000-0002-1144-4067")))
+     c(person(given = "Sudarshan", family = "Shetty", role = c("aut", "cre"),
+              email = "leo.lahti@iki.fi",
+              comment = c(ORCID = "0000-0001-5537-637X")),
+       person(given = "Wouter AA", family = "de Steenhuijsen Piters", role = c("ctb"),
+              email = "w.a.a.desteenhuijsenpiters@gmail.com",
+              comment = c(ORCID = "0000-0002-1144-4067")))
 Maintainer: Sudarshan Shetty <sudarshanshetty9@gmail.com>
 Description: 
     The dysbiosisR package implements tools for calculating some common dysbiosis 
