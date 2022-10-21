@@ -56,7 +56,9 @@ Shetty SA, et al., 2022. *dysbiosisR*: An R package to calculate common dysbiosi
 
 5.  Saffouri GB, Shields-Cutler RR, Chen J, Yang Y, Lekatz HR, Hale VL, Cho JM, Battaglioli EJ, Bhattarai Y, Thompson KJ, Kalari KK, Behera G, Berry JC, Peters SA, Patel R, Schuetz AN, Faith JJ, Camilleri M, Sonnenburg JL, Farrugia G, Swann JR, Grover M, Knights D, Kashyap PC. 2019. Small intestinal microbial dysbiosis underlies symptoms associated with functional gastrointestinal disorders. Nat Commun 10:2012. 10.1038/s41467-019-09964-7.
 
-6.  Wei, S., Bahl, M.I., Baunwall, S.M.D., Hvas, C.L. and Licht, T.R., 2021. Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances. Applied and Environmental Microbiology, 87(11), pp.e00395-21.
+6.  Wei, S, Bahl, MI, Baunwall, SMD, Hvas, CL and Licht, TR. 2021. Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances. Applied and Environmental Microbiology, 87(11), pp.e00395-21.
+
+7.  Halfvarson J, Brislawn CJ, Lamendella R, Vázquez-Baeza Y, Walters WA, Bramer LM, D'Amato M, Bonfiglio F, McDonald D, Gonzalez A, McClure EE, Dunklebarger MF, Knight R, Jansson JK. 2017. Dynamics of the human gut microbiome in inflammatory bowel disease. Nat Microbiol 2:17004. 10.1038/nmicrobiol.2017.4.
 
 ## Acknowledgement
 
