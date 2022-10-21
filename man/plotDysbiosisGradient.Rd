@@ -12,6 +12,8 @@ by dysbiosisR package.}
 \item{colors}{colors to use for plotting. Default is NULL.}
 
 \item{show_points}{Logical TRUE or FALSE.}
+
+\item{jitter_width}{Passed to geom_jitter.}
 }
 \value{
 A ggplot2 object

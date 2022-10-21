@@ -13,6 +13,8 @@
 #'
 #' @param show_points Logical TRUE or FALSE.
 #'
+#' @param jitter_width Passed to geom_jitter.
+#'
 #' @return A ggplot2 object
 #'
 #' @examples
@@ -55,7 +57,8 @@ plotDysbiosisGradient <- function(df=NULL,
                                   group_var = NULL,
                                   group_colors=NULL,
                                   point_size = 2,
-                                  bg_colors = NULL){
+                                  bg_colors = NULL,
+                                  jitter_width = 0.5){
 
   if(!score %in% colnames(df)){
     stop(paste0("The input data does not have column '", score, "'"))
@@ -77,7 +80,7 @@ plotDysbiosisGradient <- function(df=NULL,
   }
 
   p.res <- ggplot2::ggplot(df,
-                           ggplot2::aes_string("sam.ind.x", "score")) +
+                           ggplot2::aes_string("sam.ind.x", score)) +
     ggplot2::annotation_custom(
       grob = g, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf
     ) +
@@ -85,7 +88,7 @@ plotDysbiosisGradient <- function(df=NULL,
     ggplot2::geom_hline(yintercept = low_line, lty ="dashed") +
     ggplot2::geom_jitter(color="white",
                          ggplot2::aes_string(fill=group_var), shape=21, size=3,
-                         position = ggplot2::position_jitter(seed = 42)) +
+                         position = ggplot2::position_jitter(seed = 42, width = jitter_width)) +
     ggplot2::scale_fill_manual(values = group_colors)+
     ggplot2::theme_minimal()+
     ggplot2::theme(axis.text.x = ggplot2::element_blank()) +
