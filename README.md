@@ -1,7 +1,8 @@
 
 
 <!-- badges: start -->  
-[![R-CMD-check](https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/microsud/dysbiosisR/blob/master/LICENSE.md) ![GitHub Repo stars](https://img.shields.io/github/stars/microsud/dysbiosisR?style=social) [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange)](https://lifecycle.r-lib.org/articles/stages.html#experimental)   
+[![R-CMD-check](https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/microsud/dysbiosisR/actions/workflows/R-CMD-check.yaml) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/microsud/dysbiosisR/blob/master/LICENSE.md) ![GitHub Repo stars](https://img.shields.io/github/stars/microsud/dysbiosisR?style=social) [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange)](https://lifecycle.r-lib.org/articles/stages.html#experimental) 
+[![codecov](https://codecov.io/gh/microsud/dysbiosisR/branch/master/graph/badge.svg?token=0571R9WAHC)](https://codecov.io/gh/microsud/dysbiosisR) 
 <!-- badges: end -->
 
 # dysbiosisR <img src="man/figures/logo.png" align="right" height="130"/>
