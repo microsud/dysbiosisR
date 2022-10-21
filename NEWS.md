@@ -1,3 +1,7 @@
+# dysbiosisR 1.0.2
+
+* Vignette update.  
+
 # dysbiosisR 1.0.1
 
 * Basic functions near completion added to the package.  

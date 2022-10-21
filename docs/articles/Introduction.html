@@ -211,7 +211,7 @@ be identified using the <code>quantile</code> function.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Dysbiosis Score"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span>
 <span><span class="va">p1</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># order the data </span></span>
 <span><span class="va">dysbiosis_1</span><span class="op">$</span><span class="va">disease</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dysbiosis_1</span><span class="op">$</span><span class="va">disease</span>, </span>
@@ -225,7 +225,7 @@ be identified using the <code>quantile</code> function.</p>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-9-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.6469.</p>
 </div>
 <div class="section level3">
@@ -263,7 +263,7 @@ score.</p>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-11-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.797.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotDysbiosis.html">plotDysbiosis</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">dysbiosis_2</span>,</span>
@@ -273,7 +273,7 @@ score.</p>
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Dysbiosis Score (Centroid)"</span><span class="op">)</span></span>
 <span><span class="va">p3</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-12-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-12-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="combined-alpha-beta-diveristy-based-score">Combined Alpha Beta Diveristy Based Score<a class="anchor" aria-label="anchor" href="#combined-alpha-beta-diveristy-based-score"></a>
@@ -302,7 +302,7 @@ means for alpha and beta diversity.</p>
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Shannon-JSD\nDysbiosis Score"</span><span class="op">)</span></span>
 <span><span class="va">p4</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-14-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># order the data </span></span>
 <span><span class="va">dysbiosis_3</span><span class="op">$</span><span class="va">disease</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">dysbiosis_3</span><span class="op">$</span><span class="va">disease</span>, </span>
@@ -316,7 +316,7 @@ means for alpha and beta diversity.</p>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-15-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-15-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.582.</p>
 </div>
 <div class="section level3">
@@ -357,7 +357,7 @@ score.</p>
 <span>                   auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   max.auc.polygon<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                   print.auc<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-17-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-17-1.png" width="100%"></p>
 <p>The AUC for this approach is 0.631.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotDysbiosis.html">plotDysbiosis</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">cloud.results</span>,</span>
@@ -367,7 +367,7 @@ score.</p>
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"Dysbiosis CLOUD Score"</span><span class="op">)</span></span>
 <span><span class="va">p2</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-18-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="random-forest-prediction-based-score">Random Forest Prediction Based Score<a class="anchor" aria-label="anchor" href="#random-forest-prediction-based-score"></a>
@@ -406,7 +406,7 @@ allows for calculating this measure with some level of freedom of
 <span><span class="co">#&gt; 0.08333333 0.01 </span></span>
 <span><span class="co">#&gt; mtry = 76    OOB error = 18.4% </span></span>
 <span><span class="co">#&gt; -0.04545455 0.01</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-19-1.png" width="50%" style="display: block; margin: auto;"><img src="Introduction_files/figure-html/unnamed-chunk-19-2.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"><img src="Introduction_files/figure-html/unnamed-chunk-19-2.png" width="100%" style="display: block; margin: auto;"></p>
 <p>Visualize</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plotDysbiosis.html">plotDysbiosis</a></span><span class="op">(</span>df<span class="op">=</span><span class="va">dysbiosis.oob</span>,</span>
@@ -416,7 +416,7 @@ allows for calculating this measure with some level of freedom of
 <span>                    show_points <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"OOB Dysbiosis Score"</span><span class="op">)</span></span>
 <span><span class="va">p5</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-20-1.png" width="50%" style="display: block; margin: auto;"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;"></p>
 <p>All these measure may be influenced by host factors such as age,
 gender, BMI, etc. It is advised to investigate these factors when
 analyzing the dysbiosis measures.</p>
@@ -477,8 +477,52 @@ approach along with the <code>dysbiosis_thres</code> and
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com" class="external-link">patchwork</a></span><span class="op">)</span></span>
 <span><span class="va">p.obb</span> <span class="op">+</span> <span class="va">p.clv</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html" class="external-link">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Introduction_files/figure-html/unnamed-chunk-22-1.png" width="50%"></p>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-22-1.png" width="100%"></p>
+<p>Additional notes: The ROC AUC curves generated for a single data set
+are susceptible to over fitting or under fitting and therefore, the
+dysbiosis scores should be considered to be data specific. In order to
+build/use generalized prediction models based on dysbiosis measures and
+inferred cut-offs, different training and test data must be used. We see
+the application of these dysbiosis measure more specifically for single
+data sets where one would like to ‘capture disease associated imbalance’
+into a single sample specific score. This score may be used to check for
+associations with other disease related features.</p>
+<p>Caution: The dysbiosis score in itself does not tell anything about
+the cause or consequence and hence careful interpretation is of
+paramount importance.</p>
+<p>Here, for example we ask how different is the gut microbiota at
+different CRC stages compared to control gut microbiota? We can look at
+two measures, alpha diversity and dysbiosis score in different CRC
+stages.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># get alpha diversity example Shannon diversity  </span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/phyloseq/man/sample_data-methods.html" class="external-link">sample_data</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span><span class="op">)</span><span class="op">$</span><span class="va">shannon</span> <span class="op">&lt;-</span> <span class="fu">microbiome</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbiome/man/diversity.html" class="external-link">diversity</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span>, <span class="st">"shannon"</span><span class="op">)</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">shannon.plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/microbiome/man/meta.html" class="external-link">meta</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>crc.stage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">ajcc</span><span class="op">)</span>, <span class="st">"CTRL"</span>, <span class="va">ajcc</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>crc.stage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">crc.stage</span>, levels<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CTRL"</span>, <span class="st">"0"</span>, <span class="st">"i"</span>, <span class="st">"ii"</span>, <span class="st">"iii"</span>, <span class="st">"iv"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">crc.stage</span>, <span class="va">shannon</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">0.5</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color<span class="op">=</span><span class="va">disease</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color<span class="op">=</span><span class="va">disease</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"CRC stages"</span>, y<span class="op">=</span><span class="st">"Shannon"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span><span class="st">"Disease"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"healthy"</span> <span class="op">=</span> <span class="st">"steelblue"</span>, </span>
+<span>                                           <span class="st">"CRC"</span><span class="op">=</span> <span class="st">"brown3"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># random forest prediction based score  </span></span>
+<span><span class="va">dys.plot</span> <span class="op">&lt;-</span> <span class="va">dysbiosis.oob</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>crc.stage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">ajcc</span><span class="op">)</span>, <span class="st">"CTRL"</span>, <span class="va">ajcc</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>crc.stage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">crc.stage</span>, levels<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CTRL"</span>, <span class="st">"0"</span>, <span class="st">"i"</span>, <span class="st">"ii"</span>, <span class="st">"iii"</span>, <span class="st">"iv"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">crc.stage</span>, <span class="va">oob.score</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">0.5</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color<span class="op">=</span><span class="va">disease</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.1</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color<span class="op">=</span><span class="va">disease</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"CRC stages"</span>, y<span class="op">=</span><span class="st">"Dysbiosis Score\n(RF OOB)"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span><span class="st">"Disease"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"healthy"</span> <span class="op">=</span> <span class="st">"steelblue"</span>, </span>
+<span>                                              <span class="st">"CRC"</span><span class="op">=</span> <span class="st">"brown3"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">shannon.plot</span> <span class="op">+</span> <span class="va">dys.plot</span> <span class="op">+</span> <span class="fu"><a href="https://patchwork.data-imaginist.com/reference/plot_layout.html" class="external-link">plot_layout</a></span><span class="op">(</span>guides <span class="op">=</span> <span class="st">"collect"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Introduction_files/figure-html/unnamed-chunk-23-1.png" width="100%"></p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.2.1 (2022-06-23 ucrt)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)</span></span>

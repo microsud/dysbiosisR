@@ -10,7 +10,7 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  out.width = "50%",
+  out.width = "100%",
   dpi = 150,
   comment = "#>",
   message = FALSE,
@@ -341,11 +341,56 @@ p.clv <- plotDysbiosisGradient(df=dysbiosis_1,
 
 Combine the two plots using `patchwork`
 
-```{r fig.width=8, fig.height=5}
+```{r fig.width=8, fig.height=6}
 library(patchwork)
 p.obb + p.clv + plot_layout(guides = "collect")
 ```
 
+Additional notes: The ROC AUC curves generated for a single data set are susceptible 
+to over fitting or under fitting and therefore, the dysbiosis scores should be 
+considered to be data specific. In order to build/use generalized prediction 
+models based on dysbiosis measures and inferred cut-offs, different training and 
+test data must be used. We see the application of these dysbiosis measure more 
+specifically for single data sets where one would like to 'capture disease 
+associated imbalance' into a single sample specific score. This score may be 
+used to check for associations with other disease related features.    
+
+Caution: The dysbiosis score in itself does not tell anything about the cause or 
+consequence and hence careful interpretation is of paramount importance.  
+
+Here, for example we ask how different is the gut microbiota at different CRC 
+stages compared to control gut microbiota? We can look at two measures, alpha 
+diversity and dysbiosis score in different CRC stages.   
+
+```{r fig.width=7, fig.height=3}
+# get alpha diversity example Shannon diversity  
+sample_data(WirbelJ_2018)$shannon <- microbiome::diversity(WirbelJ_2018, "shannon")[,1]
+
+shannon.plot <- meta(WirbelJ_2018) |> 
+  mutate(crc.stage = ifelse(is.na(ajcc), "CTRL", ajcc)) |> 
+  mutate(crc.stage = factor(crc.stage, levels= c("CTRL", "0", "i", "ii", "iii", "iv"))) |> 
+  ggplot(aes(crc.stage, shannon)) +
+  geom_boxplot(width=0.5, aes(color=disease))+
+  geom_jitter(width = 0.2, aes(color=disease)) +
+  theme_bw() +
+  labs(x="CRC stages", y="Shannon") +
+  scale_color_manual("Disease", values = c("healthy" = "steelblue", 
+                                           "CRC"= "brown3"))
+
+# random forest prediction based score  
+dys.plot <- dysbiosis.oob |> 
+  mutate(crc.stage = ifelse(is.na(ajcc), "CTRL", ajcc)) |> 
+  mutate(crc.stage = factor(crc.stage, levels= c("CTRL", "0", "i", "ii", "iii", "iv"))) |> 
+  ggplot(aes(crc.stage, oob.score)) +
+  geom_boxplot(width=0.5, aes(color=disease))+
+  geom_jitter(width = 0.1, aes(color=disease)) +
+  theme_bw() +
+  labs(x="CRC stages", y="Dysbiosis Score\n(RF OOB)") +
+  scale_color_manual("Disease", values = c("healthy" = "steelblue", 
+                                              "CRC"= "brown3"))
+shannon.plot + dys.plot + plot_layout(guides = "collect")
+
+```
 
 ```{r}
 sessionInfo()
