@@ -49,7 +49,7 @@ head(dtrp.results)
 \item{}{Halfvarson J, Brislawn CJ, Lamendella R et al. (2017)
 Dynamics of the human gut microbiome in inflammatory bowel disease.
 \emph{Nature Microbiology}, 2, article number: 17004.}
-
+\item{}{Vázquez-Baeza Y. (2017) Reference Plane, GitHub repository, https://github.com/ElDeveloper/reference-plane}
 }
 }
 \author{
