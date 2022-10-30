@@ -224,7 +224,6 @@ important parameter specified by argument `k_num`. By default we use a
 conservative 80 percent of the samples in each group.
 
 ```{r}
-
 cloud.results <- cloudStatistic(WirbelJ_2018,
                                 dist_mat = dist.mat,
                                 reference_samples = ref.samples,

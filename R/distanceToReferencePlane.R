@@ -62,12 +62,15 @@ distanceToReferencePlane <- function(x = NULL,
 
   if(!all(sample_names(x) == rownames(as(dist_mat, "matrix"))) ||
      !all(sample_names(x) == colnames(as(dist_mat, "matrix")))) {
-    stop("Phyloseq `sample_names()` and row- and/or colnames of the distance matrix are not in the same order")
+    stop("Phyloseq `sample_names()` and row- and/or colnames of the",
+         "distance matrix are not in the same order",
+         call. = FALSE)
   }
+  .check_input_ref_samples(dist_mat, reference_samples)
 
   ord <- ordinate(x, method = "PCoA", distance = dist_mat)
   reference <- ord$vectors[reference_samples, 1:3]
-  abcd = .compute_coefficients(reference)
+  abcd <- .compute_coefficients(reference)
 
   dtrp.res <- apply(ord$vectors[, 1:3], 1, function(x) .point_to_segment_distance(abcd, x, reference)) |>
     stack()
@@ -111,9 +114,9 @@ distanceToReferencePlane <- function(x = NULL,
   # point: The values for x, y and z for the point that you want
   # to calculate the distance to.
 
-  abc = abcd[1:3]
-  d = abcd[4]
-  dist = abs((abc %*% point) + d)
+  abc <- abcd[1:3]
+  d <- abcd[4]
+  dist <- abs((abc %*% point) + d)
   dist/norm(matrix(abc), "F")
   # Returs the distance from the point to the plane.
 }
@@ -129,23 +132,36 @@ distanceToReferencePlane <- function(x = NULL,
   # abcd: The four coefficients of an equation that defines a
   # plane of the form a*x + b*y + c*z + d = 0.
   plane <- function(abcd, xy) {
-    a = abcd[1];b = abcd[2];c = abcd[3];d = abcd[4]
-    x = xy[1];y = xy[2]
+    a <- abcd[1]
+    b <- abcd[2]
+    c <- abcd[3]
+    d <- abcd[4]
+    x <- xy[1]
+    y <- xy[2]
     return (a*x + b*y + d)/(-1*c)
   }
 
   euc.dist <- function(x1, x2) sqrt(sum((x1 - x2)^2))
 
-  a = abcd[1];b = abcd[2];c = abcd[3];d = abcd[4]
-  p = point[1];q = point[2];r = point[3]
-  l = ((d*-1) - p*a - b*q - c*r) / (a^2 + b^2 + c^2)
+  a <- abcd[1]
+  b <- abcd[2]
+  c <- abcd[3]
+  d <- abcd[4]
+  p <- point[1]
+  q <- point[2]
+  r <- point[3]
+  l <- ((d*-1) - p*a - b*q - c*r) / (a^2 + b^2 + c^2)
   extreme = c(p + l*a, q + l*b, r + l*c)
 
   for (i in 1:ncol(xyz)) {
-    vector = xyz[,i]
-    ranges = range(vector)
-    if(extreme[i] < ranges[1]) { extreme[i] <- ranges[1]
-    } else if(extreme[i] > ranges[2]) { extreme[i] <- ranges[2] } }
+    vector <- xyz[,i]
+    ranges <- range(vector)
+    if(extreme[i] < ranges[1]) {
+      extreme[i] <- ranges[1]
+    } else if(extreme[i] > ranges[2]) {
+      extreme[i] <- ranges[2]
+    }
+  }
   extreme[length(extreme)] = plane(abcd, extreme[-length(extreme)])
   return(euc.dist(point, extreme))
   # returns the distance from the point to the segment of the plane that

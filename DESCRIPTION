@@ -1,7 +1,7 @@
 Package: dysbiosisR
 Type: Package
 Title: Calculate Microbiome Dysbiosis
-Version: 1.0.2
+Version: 1.0.3
 Authors@R:
      c(person(given = "Sudarshan", family = "Shetty", role = c("aut", "cre"),
               email = "leo.lahti@iki.fi",

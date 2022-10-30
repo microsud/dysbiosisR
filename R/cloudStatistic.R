@@ -68,16 +68,17 @@ cloudStatistic <- function(x =NULL,
     stop("All arguments must be specified")
   }
 
+  .check_input_ref_samples(dist_mat, reference_samples)
   # reference scores
-  dist_mat.ref = as.matrix(dist_mat)[reference_samples,reference_samples]
+  dist_mat.ref <- as.matrix(dist_mat)[reference_samples,reference_samples]
 
-  # get number of neighnour from percent defined
+  # get number of neighbor from percent defined
   k.num.ref <- length(reference_samples) * (k_num/100)
 
   ref.stat.df <- .cloud_function(d=dist_mat.ref,
                                  test.ix=reference_samples,
                                  k=k.num.ref,
-                                 ndim=-1)
+                                 ndim=ndim)
   ref.stat.df$log2Stats <- log2(ref.stat.df$stats)
   rownames(ref.stat.df) <- ref.stat.df$ids
   #ref.stat.df$group <- "reference"
@@ -99,7 +100,7 @@ cloudStatistic <- function(x =NULL,
   test.stat.df <- .cloud_function(d = as.matrix(dist_mat),
                                   test.ix = test.samples,
                                   k = k.num.test, #k.num,
-                                  ndim = -1)
+                                  ndim = ndim)
   test.stat.df$log2Stats <- log2(test.stat.df$stats)
   rownames(test.stat.df) <- test.stat.df$ids
   all.res <- rbind(ref.stat.df, test.stat.df)
