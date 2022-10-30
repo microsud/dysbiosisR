@@ -21,4 +21,5 @@ dysbiosisOverview <- function(){
   cat("3. cloudStatistic: Montassier E et al. (2018)\n")
   cat("4. combinedShannonJSD: Santiago M et al. (2019)\n")
   cat("5. dysbiosisOBB: Saffouri GB, Shields-Cutler R et al. (2019)\n")
+  cat("6. distanceToReferencePlane: Halfvarson J, Brislawn CJ et al. (2017)\n")
 }
