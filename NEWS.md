@@ -1,3 +1,7 @@
+# dysbiosisR 1.0.3
+
+* Minor fixes.
+
 # dysbiosisR 1.0.2
 
 * Added distanceToRefeencePlane-function to the package.

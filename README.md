@@ -23,8 +23,8 @@ You can install the development version of `dysbiosisR` like this:
 ``` 
     library(dysbiosisR)
 ``` 
-The package is currently in the Beta version and a stable version will be made 
-available soon. We welcome feedback and suggestions.
+
+We welcome feedback and suggestions.
 
 ## How to use   
 

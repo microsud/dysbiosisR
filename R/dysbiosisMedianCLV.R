@@ -53,6 +53,7 @@ dysbiosisMedianCLV <- function(x = NULL,
   if(is.null(x) || is.null(dist_mat) || is.null(reference_samples)){
     stop("All arguments must be specified")
   }
+  .check_input_ref_samples(dist_mat, reference_samples)
 
   dist.mat <- dist_mat  |>
     as.matrix() |>
