@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 In human microbiome research, there is interest in measuring “dysbiosis” which in 
 many cases relies on comparing a case group with a control (without known disease). 
 Several methods have been reported in literature and reviewed by Wei S et al., in their 
-2021 article [Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances](https://doi.org/10.1128/AEM.00395-21). The `dysbiosisR` provides tools for five approaches covering three different methods: Neighborhood classification, Random forest prediction and Combined alpha-beta diversity.   
+2021 article [Determining gut microbial dysbiosis: a review of applied indexes for assessment of intestinal microbiota imbalances](https://doi.org/10.1128/AEM.00395-21). The `dysbiosisR` provides tools for six approaches covering three different methods: Neighborhood classification, Random forest prediction and Combined alpha-beta diversity.   
 
 It is important to note that the term 'dysbiosis' is a vaguely defined term in most instances and different methods are employed. We noticed a lack of tools for convenient and reproducible measurement of “dysbiosis” measures/scores/index. To address this gap we accumulated some commonly used approaches into a more standardized manner in an R package we call `dysbiosisR`.   
 We would also like to direct the readers and users to debates surrounding the concept of dysbiosis and suggest to interpret these measures by considering its pitfalls.    

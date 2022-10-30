@@ -7,8 +7,8 @@
 
 # dysbiosisR <img src="man/figures/logo.png" align="right" height="130"/>
 
-The *dysbiosisR* package is a collection of functions to calculate some common 
-dysbiosis measures from microbiota profiling data. The package currently supports 
+The *dysbiosisR* package is a collection of functions to calculate six dysbiosis 
+measures from microbiota profiling data. The package currently supports 
 microbiome data organized as phyloseq objects.  
 
 
@@ -42,7 +42,7 @@ Contributions and feedback are very welcome:
 
 ## Cite
 
-Shetty SA, et al., 2022. *dysbiosisR*: An R package to calculate common dysbiosis measures.
+Shetty SA, WAA de Steenhuijsen Piters., et al., 2022. *dysbiosisR*: an R package for calculating microbiome dysbiosis measures.
 
 ### References
 
