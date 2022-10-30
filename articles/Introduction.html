@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">dysbiosisR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,7 +125,7 @@ is not an answer</a></p></li>
 <p>Print the available methods.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dysbiosisOverview.html">dysbiosisOverview</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; You are using dysbiosisR version: [1] '1.0.2'</span></span>
+<span><span class="co">#&gt; You are using dysbiosisR version: [1] '1.0.3'</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Following score (s) are currently supported</span></span>
 <span><span class="co">#&gt; 1. dysbiosisMedianCLV: Lloyd-Price J, Arze CAnanthakrishnan AN et al. (2019)</span></span>
@@ -332,8 +332,7 @@ which distance of every other sample is calculated. When calculating the
 specified by argument <code>k_num</code>. By default we use a
 conservative 80 percent of the samples in each group.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">cloud.results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cloudStatistic.html">cloudStatistic</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span>,</span>
+<code class="sourceCode R"><span><span class="va">cloud.results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/cloudStatistic.html">cloudStatistic</a></span><span class="op">(</span><span class="va">WirbelJ_2018</span>,</span>
 <span>                                dist_mat <span class="op">=</span> <span class="va">dist.mat</span>,</span>
 <span>                                reference_samples <span class="op">=</span> <span class="va">ref.samples</span>,</span>
 <span>                                ndim<span class="op">=</span><span class="op">-</span><span class="fl">1</span>,</span>
@@ -602,7 +601,7 @@ stages.</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] patchwork_1.1.2   dplyr_1.0.10      dysbiosisR_1.0.2  microbiome_1.18.0</span></span>
+<span><span class="co">#&gt; [1] patchwork_1.1.2   dplyr_1.0.10      dysbiosisR_1.0.3  microbiome_1.18.0</span></span>
 <span><span class="co">#&gt; [5] ggplot2_3.3.6     phyloseq_1.40.0  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
