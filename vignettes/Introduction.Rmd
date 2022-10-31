@@ -220,8 +220,7 @@ test and returns a measure of dysbiosis. The function was adapted from
 the original article by [Montassier E et al. 2018](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0514-4). 
 Here, a user defines a set of reference samples from which distance of every 
 other sample is calculated. When calculating the `CLOUD` stats the _k_ is an 
-important parameter specified by argument `k_num`. By default we use a 
-conservative 80 percent of the samples in each group.
+important parameter specified by argument `k_num`. 
 
 ```{r}
 cloud.results <- cloudStatistic(WirbelJ_2018,

@@ -1,3 +1,7 @@
+# dysbiosisR 1.0.4
+
+* Minor fixes improve test coverage.
+
 # dysbiosisR 1.0.3
 
 * Minor fixes.

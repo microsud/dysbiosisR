@@ -73,22 +73,36 @@ plotDysbiosisGradient <- function(df=NULL,
 
   df$sam.ind.x <- "samples"
 
-  if(!is.null(bg_colors)){
-    g <-  .make_gradient(deg = 90, n = 500, cols = bg_colors)
-  } else{
-    g <-  .make_gradient(deg = 90, n = 500, cols = rev(brewer.pal(9, "YlOrBr")))
+  # if(is.null(bg_colors)){
+  #   bg_colors <- rev(brewer.pal(9, "YlOrBr"))
+  #   #
+  #   # g <-  .make_gradient(deg = 90, n = 500, cols = bg_colors)
+  # } else{
+  #   g <-  .make_gradient(deg = 90, n = 500, cols = rev(brewer.pal(9, "YlOrBr")))
+  # }
+  if(is.null(bg_colors)){
+    bg_colors <- c("#003f5c", "#58508d","#bc5090","#ff6361", "#ffa600")
   }
+  g <- .make_gradient(deg = 90, n = 500, cols = bg_colors)
 
   p.res <- ggplot2::ggplot(df,
                            ggplot2::aes_string("sam.ind.x", score)) +
-    ggplot2::annotation_custom(
-      grob = g, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf
-    ) +
-    ggplot2::geom_hline(yintercept = high_line, lty ="dashed", color= "white")+
-    ggplot2::geom_hline(yintercept = low_line, lty ="dashed") +
+    ggplot2::annotation_custom(grob = g,
+                               xmin = -Inf,
+                               xmax = Inf,
+                               ymin = -Inf,
+                               ymax = Inf) +
+    ggplot2::geom_hline(yintercept = high_line,
+                        lty ="dashed",
+                        color= "white")+
+    ggplot2::geom_hline(yintercept = low_line,
+                        lty ="dashed") +
     ggplot2::geom_jitter(color="white",
-                         ggplot2::aes_string(fill=group_var), shape=21, size=3,
-                         position = ggplot2::position_jitter(seed = 42, width = jitter_width)) +
+                         ggplot2::aes_string(fill=group_var),
+                         shape=21,
+                         size=3,
+                         position = ggplot2::position_jitter(seed = 42,
+                                                             width = jitter_width)) +
     ggplot2::scale_fill_manual(values = group_colors)+
     ggplot2::theme_minimal()+
     ggplot2::theme(axis.text.x = ggplot2::element_blank()) +

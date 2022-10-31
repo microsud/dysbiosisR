@@ -22,6 +22,16 @@ test_that("plotDysbiosisGradient works", {
                                      bg_colors = rev(volcano),
                                      jitter_width = 0.1))
 
+  expect_error(plotDysbiosisGradient(df=NULL,
+                                     score=NULL,
+                                     high_line = 0.5,
+                                     # low_line = normobiosis_thres,
+                                     group_var = "disease",
+                                     group_colors=NULL,
+                                     point_size = 2,
+                                     bg_colors = rev(volcano),
+                                     jitter_width = 0.1))
+
   expect_error(plotDysbiosisGradient(df=dysbiosis_1,
                                      score="score",
                                      high_line = 0.5,
@@ -52,5 +62,17 @@ test_that("plotDysbiosisGradient works", {
                                      point_size = 2,
                                      bg_colors = rev(volcano),
                                      jitter_width = 0.1))
+
+  p <- plotDysbiosisGradient(df=dysbiosis_1,
+                             score="score",
+                             high_line = 0.5,
+                             group_var = "disease",
+                             group_colors=c("healthy" = "steelblue",
+                                            "CRC"= "brown3"),
+                             point_size = 2,
+                             bg_colors = NULL,
+                             jitter_width = 0.1)
+  expect_true(is.ggplot(p))
+  expect_equal(colnames(p$data)[26], "sam.ind.x")
 
 })
