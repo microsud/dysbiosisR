@@ -4,8 +4,8 @@ Title: Calculate Microbiome Dysbiosis
 Version: 1.0.4
 Authors@R:
      c(person(given = "Sudarshan", family = "Shetty", role = c("aut", "cre"),
-              email = "leo.lahti@iki.fi",
-              comment = c(ORCID = "0000-0001-5537-637X")),
+              email = "sudarshanshetty9@gmail.com",
+              comment = c(ORCID = "0000-0001-7280-9915")),
        person(given = "Wouter AA", family = "de Steenhuijsen Piters", role = c("ctb"),
               email = "w.a.a.desteenhuijsenpiters@gmail.com",
               comment = c(ORCID = "0000-0002-1144-4067")))
